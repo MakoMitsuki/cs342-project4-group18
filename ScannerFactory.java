@@ -1,5 +1,6 @@
-package cs342hw3;
 import java.util.*;
+
+// ScannerFactory.java -- mcabud2
 
 public class ScannerFactory {
 	private static Scanner keyboardScanner = new Scanner(System.in);

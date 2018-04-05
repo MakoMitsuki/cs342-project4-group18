@@ -1,11 +1,7 @@
-package cs342hw3;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
-/* !!!!!!!!!!!!!! NOTE
- * BEWARE OF .setSelected() BEING USED AT 
- * GET ANSWER FROM STUDENT
- */
+// MCSAQuestion.java -- mcabud2
 
 public class MCSAQuestion extends MCQuestion{
 	

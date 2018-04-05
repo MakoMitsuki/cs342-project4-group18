@@ -1,5 +1,6 @@
-package cs342hw3;
 import java.util.*;
+
+// MCSAAnswer -- mcabud2
 
 public class MCSAAnswer extends MCAnswer{
 	

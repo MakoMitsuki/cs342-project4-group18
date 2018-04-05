@@ -1,6 +1,7 @@
-package cs342hw3;
 import java.util.*;
 import java.io.PrintWriter;
+
+// MCMAQuestion -- mcabud2
 
 /* !!!!!!!!! NOTE
  * CHECK THE FUNCTIONALITY OF THESE FUNCTIONS
