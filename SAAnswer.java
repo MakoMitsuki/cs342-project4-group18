@@ -46,4 +46,9 @@ class SAAnswer extends Answer{
     return temp;
   }
   
+  public void save(PrintWriter pw)
+ {
+  pw.println(text);
+ }
+  
 }

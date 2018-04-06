@@ -11,7 +11,9 @@ abstract class Answer{
   protected Answer(){}  
   public abstract void print();
   public abstract String getCorrect();
-  public abstract double getCredit(Answer rightAnswer);
+  // parameter was removed here
+  public abstract double getCredit(Answer a);
+  public abstract void save(PrintWriter pw);
   
   
 }

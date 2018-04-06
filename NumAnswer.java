@@ -58,6 +58,11 @@ class NumAnswer extends Answer{
    return "";
   }
   
+  public void save(PrintWriter pw)
+ {
+  pw.println(number);
+ }
+  
   
   
 }

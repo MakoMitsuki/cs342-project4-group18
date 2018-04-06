@@ -1,6 +1,6 @@
 // Michael Pedraza
 // mpedra5
-
+//package cs342hw3;
 import java.util.*;
 import java.io.*;
 
@@ -64,14 +64,15 @@ class SAQuestion extends Question{
   // why does it freeze here?
   // getCredit is never entered despite being invoked
   public double getValue(){
-    return (studentAnswer == null) ? 0.0 : (maxValue * studentAnswer.getCredit(rightAnswer) );
+    Answer a = null;
+    return (studentAnswer == null) ? 0.0 : (maxValue * studentAnswer.getCredit(a));
     
   }
   
   public void save(PrintWriter pw)
   {
     pw.println(maxValue);
-    pw.println(question); 
+    pw.println(text); 
   }
   
   
