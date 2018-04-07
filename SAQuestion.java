@@ -21,6 +21,7 @@ class SAQuestion extends Question{
     //System.out.println("SAQ");
     super(s1);
     System.out.println("Got the question in SAQuestion.");
+    System.out.println("The question obtained is:" +text);
     // now get the answer
     rightAnswer = new SAAnswer(s1);
     System.out.println(rightAnswer.getCorrect());
