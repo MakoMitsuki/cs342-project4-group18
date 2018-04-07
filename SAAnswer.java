@@ -13,8 +13,9 @@ class SAAnswer extends Answer{
   
   SAAnswer (Scanner s1){
     // got it here
+    System.out.println("made it to SAAnswer");
     text = s1.nextLine();
-    //System.out.println("the answer1:  " +text);
+    System.out.println("the answer1:  " +text);
   }
   
   public void print(){
