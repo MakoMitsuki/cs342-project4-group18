@@ -14,6 +14,12 @@ class ExamTesterMain{
     // obtain the singleton scanner
     Scanner s1 = ScannerFactory.getKS();
     
+    System.out.println("Enter the file data path: ");
+    String a2 = s1.nextLine();
+    File fileA = new File(a2);
+    s1 = new Scanner(fileA);  
+      
+    
     // enter destination portons
     System.out.println("Enter destination for writing");
     Scanner s2 = new Scanner(System.in);
