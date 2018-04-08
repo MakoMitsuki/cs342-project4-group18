@@ -40,7 +40,7 @@ public class Exam {
       type = Nscanner.nextLine();
     }
     //System.out.println(type);
-    while (Nscanner.hasNextLine() || !(type.equals("EOF"))){
+    while (Nscanner.hasNextLine()){
       
       if(type.equals("MCSAQuestion")){
         questionArray.add(new MCSAQuestion(Nscanner));
@@ -50,14 +50,16 @@ public class Exam {
       else if(type.equals("SAQuestion")){
         questionArray.add(new SAQuestion(Nscanner));
       }
-	  else if (type.equals("NumQuestion")){
-		  questionArray.add(new NumQuestion(Nscanner));
-	  }
-      try{
+   else if (type.equals("NumQuestion")){
+    questionArray.add(new NumQuestion(Nscanner));
+   }
+   
+   
+   // check if there is a next line
+   // this was one of the issues.
+   
+   if(Nscanner.hasNextLine()){
         type = Nscanner.nextLine();
-      }
-      catch(Exception e){
-        Nscanner.nextLine();
       }
       
       

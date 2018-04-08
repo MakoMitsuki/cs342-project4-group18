@@ -19,14 +19,19 @@ public class MCMAQuestion extends MCQuestion{
  public MCMAQuestion(Scanner Scan)
  {
   super(Scan);
-  try
-  {
-   baseCredit = Double.parseDouble(Scan.nextLine());
-  }
-  catch(Exception e)
-  {
-   //Scan.nextLine();
-  }
+  baseCredit = Scan.nextDouble();
+  
+  // clear the line
+    Scan.nextLine();
+    
+    // get number of answers
+    int numAnswers = Scan.nextInt();
+    
+    // now get the answers
+    for(int i = 0; i < numAnswers; i++){
+      MCMAAnswer a = new MCMAAnswer(Scan);
+      answerArray.add(a);
+    }
  }
  
  public Answer getNewAnswer(String t, double creditIfSelected)

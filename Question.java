@@ -31,9 +31,14 @@ import java.io.PrintWriter;
  
  //Scanner constructor
  Question(Scanner scan){
-  maxValue = Double.parseDouble(scanner.nextLine());
-  text = scan.nextLine();
-  
+   System.out.println("in Question");
+   maxValue = scan.nextDouble();
+   System.out.println(maxValue);
+   // clear the line
+   scan.nextLine(); 
+   text = scan.nextLine();
+   System.out.println(text);
+   
  }
  
  Question(String prompt,double max){

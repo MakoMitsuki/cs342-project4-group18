@@ -6,6 +6,7 @@ public abstract class MCAnswer extends Answer {
  // protected boolean selected = false; removed in Project 3
  protected String text = "";
  protected double creditIfSelected = 0;
+ protected boolean selected;
  
  protected MCAnswer(String Text, double CreditIfSelected) {
   text = Text;
@@ -13,10 +14,19 @@ public abstract class MCAnswer extends Answer {
  }
  
  /* NEW */
- public MCAnswer(Scanner Scan)
+ public MCAnswer(Scanner s1)
  {
-  creditIfSelected = Double.parseDouble(Scan.nextLine());
-  text = Scan.nextLine();
+ 
+   // get points
+   creditIfSelected = s1.nextDouble();
+   System.out.println(creditIfSelected);
+   // skip space
+   s1.skip(" ");
+   // get answer
+   text = s1.nextLine();
+   System.out.println(text);
+   selected = false;
+  
  }
  
  public void print()

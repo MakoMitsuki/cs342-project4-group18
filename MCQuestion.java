@@ -33,9 +33,9 @@ abstract public class MCQuestion extends Question{
   */
   super(scanner);
   answerArray = new ArrayList<MCAnswer>();
-  answerChar = 'A';
+  //answerChar = 'A';
   //baseCredit = Double.parseDouble(scanner.nextLine());
-  maxAnswers = Integer.parseInt(scanner.nextLine());
+  //maxAnswers = Integer.parseInt(scanner.nextLine());
   rightAnswer = null;
   studentAnswer = null;
   
