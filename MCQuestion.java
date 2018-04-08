@@ -85,13 +85,13 @@ abstract public class MCQuestion extends Question{
 
 
  public void print(){
-  System.out.println(super.text);
-  for(int i=0;i<answerArray.size();i++){
-   System.out.print("\t"+((char)(answerChar+i)) + ". ");
-   answerArray.get(i).print();
    
-  }
-  
+   super.print();
+    
+    for(int i = 0; i<answerArray.size(); i++){
+      System.out.print("   " +(char)('A' + i)+(". "));
+      answerArray.get(i).print();
+    }  
  }
  
  public void reorderAnswers(){

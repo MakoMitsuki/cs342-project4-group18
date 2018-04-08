@@ -104,6 +104,7 @@ public class Exam {
     for(int i  = 0;i<questionArray.size();i++){
       System.out.print((i+1) + ". " );
       questionArray.get(i).print();
+      System.out.println();
       //questionArray.get(i).getAnswerFromStudent();
     }
   }

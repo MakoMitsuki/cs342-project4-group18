@@ -26,6 +26,8 @@ public class MCMAQuestion extends MCQuestion{
     
     // get number of answers
     int numAnswers = Scan.nextInt();
+    // clear the line
+    Scan.nextLine();
     
     // now get the answers
     for(int i = 0; i < numAnswers; i++){

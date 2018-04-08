@@ -19,9 +19,15 @@ public class MCSAQuestion extends MCQuestion{
  /* NEW */
  public MCSAQuestion(Scanner Scan)
  {
-  super(Scan);
-  studentAnswer = new MCSAAnswer("", 0.0);
-  rightAnswer = new MCSAAnswer("", 0.0);
+   super(Scan);    
+   // get number of answers
+   int numAnswers = Scan.nextInt();
+   
+   // now get the answers
+   for(int i = 0; i < numAnswers; i++){
+     MCSAAnswer a = new MCSAAnswer(Scan);
+     answerArray.add(a);
+   }
  }
  
  // MCSA Answer
