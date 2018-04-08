@@ -27,8 +27,11 @@ abstract public class MCQuestion extends Question{
   }
   
  MCQuestion(Scanner scanner){
-  super.maxValue = Double.parseDouble(scanner.nextLine());
-  super.text = scanner.nextLine();
+  /*moved these lines up to Question.java
+  //super.maxValue = Double.parseDouble(scanner.nextLine());
+  //super.text = scanner.nextLine();
+  */
+  super(scanner);
   answerArray = new ArrayList<MCAnswer>();
   answerChar = 'A';
   //baseCredit = Double.parseDouble(scanner.nextLine());
