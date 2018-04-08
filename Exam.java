@@ -50,6 +50,9 @@ public class Exam {
       else if(type.equals("SAQuestion")){
         questionArray.add(new SAQuestion(Nscanner));
       }
+	  else if (type.equals("NumQuestion")){
+		  questionArray.add(new NumQuestion(Nscanner));
+	  }
       try{
         type = Nscanner.nextLine();
       }
