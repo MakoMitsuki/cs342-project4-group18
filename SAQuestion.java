@@ -66,8 +66,10 @@ class SAQuestion extends Question{
   // why does it freeze here?
   // getCredit is never entered despite being invoked
   public double getValue(){
-    Answer a = null;
-    return (studentAnswer == null) ? 0.0 : (maxValue * studentAnswer.getCredit(a));
+    // an answer object set to null was here
+    // and was sent as the paramter.  
+    // the correct parameter is now in place.
+    return (studentAnswer == null) ? 0.0 : (maxValue * studentAnswer.getCredit(rightAnswer));
     
   }
   

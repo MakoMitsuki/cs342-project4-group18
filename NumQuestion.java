@@ -56,8 +56,7 @@ class NumQuestion extends Question{
   // why does it freeze here?
   // getCredit is never entered despite being invoked
   public double getValue(){
-    Answer a = null;
-    return (studentAnswer == null) ? 0.0 : (maxValue * studentAnswer.getCredit(a) );
+    return (studentAnswer == null) ? 0.0 : (maxValue * studentAnswer.getCredit(rightAnswer) );
     
   }
   

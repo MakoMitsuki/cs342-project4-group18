@@ -8,44 +8,44 @@ import java.io.PrintWriter;
  */
 
 public class MCSAQuestion extends MCQuestion{
- 
- public MCSAQuestion(String Text, double MaxValue)
- {
-  super(Text, MaxValue);
-  studentAnswer = new MCSAAnswer("", 0.0);
-  rightAnswer = new MCSAAnswer("", 0.0);
- }
- 
- /* NEW */
- public MCSAQuestion(Scanner Scan)
- {
-   super(Scan);    
-   // get number of answers
-   int numAnswers = Scan.nextInt();
-   
-   // now get the answers
-   for(int i = 0; i < numAnswers; i++){
-     MCSAAnswer a = new MCSAAnswer(Scan);
-     answerArray.add(a);
-   }
- }
- 
- // MCSA Answer
- public MCSAAnswer getNewAnswer(String text, double creditifSelected)
- {
-  MCSAAnswer a = new MCSAAnswer(text, creditifSelected);
-  return a;
- }
- 
- public Answer getNewAnswer()
- {
-  return null;
- }
- 
- /* !!!!!!!!!!! beware of setSelected */
- public void getAnswerFromStudent()
- {
-  //
+  
+  public MCSAQuestion(String Text, double MaxValue)
+  {
+    super(Text, MaxValue);
+    studentAnswer = new MCSAAnswer("", 0.0);
+    rightAnswer = new MCSAAnswer("", 0.0);
+  }
+  
+  /* NEW */
+  public MCSAQuestion(Scanner Scan)
+  {
+    super(Scan);    
+    // get number of answers
+    int numAnswers = Scan.nextInt();
+    
+    // now get the answers
+    for(int i = 0; i < numAnswers; i++){
+      MCSAAnswer a = new MCSAAnswer(Scan);
+      answerArray.add(a);
+    }
+  }
+  
+  // MCSA Answer
+  public MCSAAnswer getNewAnswer(String text, double creditifSelected)
+  {
+    MCSAAnswer a = new MCSAAnswer(text, creditifSelected);
+    return a;
+  }
+  
+  public Answer getNewAnswer()
+  {
+    return null;
+  }
+  
+  /* !!!!!!!!!!! beware of setSelected */
+  public void getAnswerFromStudent()
+  {
+    //
     boolean validResponse = false;
     
     // print the question
@@ -78,52 +78,55 @@ public class MCSAQuestion extends MCQuestion{
         System.out.println("the answer selected is " +studentAnswer);
       }
     }
-      
-      for(int i = 0; i < answerArray.size(); i++){
-        answerArray.get(i).setSelected(false);
+    
+    for(int i = 0; i < answerArray.size(); i++){
+      answerArray.get(i).setSelected(false);
+    }
+    
+    // now set the student's choice
+    answerArray.get(choice).setSelected(true); 
+  }
+  
+  public double getValue()
+  {
+    double sum = 0.0;
+    for(int i = 0; i < answerArray.size(); i++){
+      sum += answerArray.get(i).getCredit(rightAnswer);
+    }
+    return Math.min(1.0,sum) * maxValue;
+  }
+  
+  /* NEW */
+  public void save(PrintWriter pw)
+  {
+    pw.println("MCSAQuestion");
+    super.save(pw);
+    pw.println(answerArray.size());
+    for (int i=0; i < answerArray.size(); i++)
+    {
+      answerArray.get(i).save(pw);
+    }
+    pw.flush();
+  }
+  
+  public void saveStudentAnswer(PrintWriter pw)
+  {
+    pw.println("MCSAAnswer");
+    pw.println(studentAnswer.getCorrect());
+    pw.flush();
+  }
+  
+  public void restoreStudentAnswers(Scanner Scan)
+  {
+    String sA = Scan.nextLine();
+    for (int i = 0; i < answerArray.size(); i++)
+    {
+      MCAnswer thisans = answerArray.get(i);
+      if (thisans.getCorrect().equalsIgnoreCase(sA))
+      {
+        studentAnswer = thisans;
+        break;
       }
-      
-      // now set the student's choice
-      answerArray.get(choice).setSelected(true); 
- }
- 
- public double getValue()
- {
-   Answer a = null;
-  return studentAnswer.getCredit(a);
- }
- 
- /* NEW */
- public void save(PrintWriter pw)
- {
-  pw.println("MCSAQuestion");
-  super.save(pw);
-  pw.println(answerArray.size());
-  for (int i=0; i < answerArray.size(); i++)
-  {
-   answerArray.get(i).save(pw);
+    }
   }
-  pw.flush();
- }
- 
- public void saveStudentAnswer(PrintWriter pw)
- {
-  pw.println("MCSAAnswer");
-  pw.println(studentAnswer.getCorrect());
-  pw.flush();
- }
- 
- public void restoreStudentAnswers(Scanner Scan)
- {
-  String sA = Scan.nextLine();
-  for (int i = 0; i < answerArray.size(); i++)
-  {
-   MCAnswer thisans = answerArray.get(i);
-   if (thisans.getCorrect().equalsIgnoreCase(sA))
-   {
-    studentAnswer = thisans;
-    break;
-   }
-  }
- }
 }

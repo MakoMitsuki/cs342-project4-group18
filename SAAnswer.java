@@ -1,5 +1,5 @@
 // Michael Pedraza
-
+// mpedra5
 
 import java.util.*;
 import java.io.*;
@@ -31,7 +31,10 @@ class SAAnswer extends Answer{
   public double getCredit(Answer rightAnswer){
     
     boolean x = false;  // do string comparison
+    System.out.println("before!!!!!!!!!!!!!!!!!!!!!!  " );
+    
     String temp = rightAnswer.getCorrect();
+    System.out.println("after!!!!!!!!!!!!!!!!!!!!!!  " +temp);
     x = text.equalsIgnoreCase(temp);
     
     if(x){

@@ -1,9 +1,9 @@
-// MCAnswer: Mika Cabudol
-
+//package cs342hw3;
 import java.util.*;
 import java.io.PrintWriter;
 
 public abstract class MCAnswer extends Answer {
+ // protected boolean selected = false; removed in Project 3
  protected String text = "";
  protected double creditIfSelected = 0;
  protected boolean selected;
@@ -39,8 +39,6 @@ public abstract class MCAnswer extends Answer {
   return text;
  }
  
-<<<<<<< HEAD
-=======
  /* REMOVED FROM PROJECT 3
   * public double getCreditIfSelected()
  {
@@ -54,9 +52,8 @@ public abstract class MCAnswer extends Answer {
   selected = Selected;
  }
  
->>>>>>> c641b71d9155e7da1733407bb026d573ce74d93c
  /* NEW */
- public double getCredit()
+ public double getCredit(Answer a)
  {
   return creditIfSelected;
  }
