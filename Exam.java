@@ -50,15 +50,15 @@ public class Exam {
       else if(type.equals("SAQuestion")){
         questionArray.add(new SAQuestion(Nscanner));
       }
-   else if (type.equals("NumQuestion")){
-    questionArray.add(new NumQuestion(Nscanner));
-   }
-   
-   
-   // check if there is a next line
-   // this was one of the issues.
-   
-   if(Nscanner.hasNextLine()){
+      else if (type.equals("NumQuestion")){
+        questionArray.add(new NumQuestion(Nscanner));
+      }
+      
+      
+      // check if there is a next line
+      // this was one of the issues.
+      
+      if(Nscanner.hasNextLine()){
         type = Nscanner.nextLine();
       }
       
@@ -161,7 +161,10 @@ public class Exam {
     
     //iterate through all questions, retrieve value, then add to total
     for(int i = 0;i<questionArray.size();i++){
-      totalPossibleScore += questionArray.get(i).getMaxVal();
+      
+      // you were originally getting the maxValue for each question.
+      
+      totalPossibleScore += questionArray.get(i).getValue();
       
     }
     

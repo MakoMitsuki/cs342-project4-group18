@@ -45,10 +45,12 @@ public abstract class MCAnswer extends Answer {
   return creditIfSelected;
  }
  
+ */
+ 
  public void setSelected(boolean Selected)
  {
   selected = Selected;
- }*/
+ }
  
  /* NEW */
  public double getCredit(Answer a)
