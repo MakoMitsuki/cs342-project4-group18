@@ -1,5 +1,4 @@
-//MCMAQuestion: Mika Cabudol
-
+//package cs342hw3;
 import java.util.*;
 import java.io.PrintWriter;
 
@@ -20,14 +19,21 @@ public class MCMAQuestion extends MCQuestion{
  public MCMAQuestion(Scanner Scan)
  {
   super(Scan);
-  try
-  {
-   baseCredit = Double.parseDouble(Scan.nextLine());
-  }
-  catch(Exception e)
-  {
-   //Scan.nextLine();
-  }
+  baseCredit = Scan.nextDouble();
+  
+  // clear the line
+    Scan.nextLine();
+    
+    // get number of answers
+    int numAnswers = Scan.nextInt();
+    // clear the line
+    Scan.nextLine();
+    
+    // now get the answers
+    for(int i = 0; i < numAnswers; i++){
+      MCMAAnswer a = new MCMAAnswer(Scan);
+      answerArray.add(a);
+    }
  }
  
  public Answer getNewAnswer(String t, double creditIfSelected)
@@ -92,7 +98,7 @@ public class MCMAQuestion extends MCQuestion{
   double val = baseCredit;
   for (int i = 0; i < studentAnswer.size(); i++)
   {
-   val += studentAnswer.get(i).getCredit();
+   val += studentAnswer.get(i).getCredit(a);
   }
   return val;
  }
@@ -110,7 +116,7 @@ public class MCMAQuestion extends MCQuestion{
   pw.flush();
  }
  
- public void saveStudentAnswers(PrintWriter pw)
+ public void saveStudentAnswer(PrintWriter pw)
  {
   pw.println("MCMAAnswer");
   pw.println(studentAnswer.size());

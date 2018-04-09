@@ -39,6 +39,22 @@ public abstract class MCAnswer extends Answer {
   return text;
  }
  
+<<<<<<< HEAD
+=======
+ /* REMOVED FROM PROJECT 3
+  * public double getCreditIfSelected()
+ {
+  return creditIfSelected;
+ }
+ 
+ */
+ 
+ public void setSelected(boolean Selected)
+ {
+  selected = Selected;
+ }
+ 
+>>>>>>> c641b71d9155e7da1733407bb026d573ce74d93c
  /* NEW */
  public double getCredit()
  {
