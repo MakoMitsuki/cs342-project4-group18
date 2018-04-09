@@ -27,15 +27,12 @@ abstract public class MCQuestion extends Question{
   }
   
  MCQuestion(Scanner scanner){
-  /*moved these lines up to Question.java
-  //super.maxValue = Double.parseDouble(scanner.nextLine());
-  //super.text = scanner.nextLine();
-  */
-  super(scanner);
+  super.maxValue = Double.parseDouble(scanner.nextLine());
+  super.text = scanner.nextLine();
   answerArray = new ArrayList<MCAnswer>();
-  //answerChar = 'A';
+  answerChar = 'A';
   //baseCredit = Double.parseDouble(scanner.nextLine());
-  //maxAnswers = Integer.parseInt(scanner.nextLine());
+  maxAnswers = Integer.parseInt(scanner.nextLine());
   rightAnswer = null;
   studentAnswer = null;
   
@@ -85,13 +82,13 @@ abstract public class MCQuestion extends Question{
 
 
  public void print(){
+  System.out.println(super.text);
+  for(int i=0;i<answerArray.size();i++){
+   System.out.print("\t"+((char)(answerChar+i)) + ". ");
+   answerArray.get(i).print();
    
-   super.print();
-    
-    for(int i = 0; i<answerArray.size(); i++){
-      System.out.print("   " +(char)('A' + i)+(". "));
-      answerArray.get(i).print();
-    }  
+  }
+  
  }
  
  public void reorderAnswers(){
@@ -105,7 +102,7 @@ abstract public class MCQuestion extends Question{
   double creditSum = 0;
   for(int i=0;i<answerArray.size();i++){
     // you took out paramater ans here
-   creditSum+= answerArray.get(i).getCredit(ans);
+   creditSum+= answerArray.get(i).getCredit();
   }
   
   return creditSum;

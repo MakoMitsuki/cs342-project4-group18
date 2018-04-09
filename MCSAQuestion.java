@@ -1,4 +1,4 @@
-//package cs342hw3;
+// MCSAQuestion: Mika Cabudol
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -19,15 +19,9 @@ public class MCSAQuestion extends MCQuestion{
  /* NEW */
  public MCSAQuestion(Scanner Scan)
  {
-   super(Scan);    
-   // get number of answers
-   int numAnswers = Scan.nextInt();
-   
-   // now get the answers
-   for(int i = 0; i < numAnswers; i++){
-     MCSAAnswer a = new MCSAAnswer(Scan);
-     answerArray.add(a);
-   }
+  super(Scan);
+  studentAnswer = new MCSAAnswer("", 0.0);
+  rightAnswer = new MCSAAnswer("", 0.0);
  }
  
  // MCSA Answer
@@ -42,7 +36,6 @@ public class MCSAQuestion extends MCQuestion{
   return null;
  }
  
- /* !!!!!!!!!!! beware of setSelected */
  public void getAnswerFromStudent()
  {
   // get student input here
@@ -75,7 +68,7 @@ public class MCSAQuestion extends MCQuestion{
  public double getValue()
  {
    Answer a = null;
-  return studentAnswer.getCredit(a);
+  return studentAnswer.getCredit();
  }
  
  /* NEW */
@@ -91,7 +84,7 @@ public class MCSAQuestion extends MCQuestion{
   pw.flush();
  }
  
- public void saveStudentAnswer(PrintWriter pw)
+ public void saveStudentAnswers(PrintWriter pw)
  {
   pw.println("MCSAAnswer");
   pw.println(studentAnswer.getCorrect());
