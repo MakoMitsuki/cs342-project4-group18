@@ -61,9 +61,6 @@ public class Exam {
       if(Nscanner.hasNextLine()){
         type = Nscanner.nextLine();
       }
-      
-      
-      
     }
     
   }

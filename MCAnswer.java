@@ -55,7 +55,8 @@ public abstract class MCAnswer extends Answer {
  /* NEW */
  public double getCredit(Answer a)
  {
-  return creditIfSelected;
+   System.out.println("this is the credit if selected: " +creditIfSelected);
+  return selected ? creditIfSelected : 0.0;
  }
  
  public void save(PrintWriter pw)

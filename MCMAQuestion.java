@@ -56,7 +56,7 @@ public class MCMAQuestion extends MCQuestion{
     //
     boolean validResponse = false;
     
-//    for(int i = 0; i < answers.size(); i++){
+//    for(int i = 0; i < answerArray.size(); i++){
 //        answers.get(i).setSelected(false);
 //      }
     
@@ -75,7 +75,7 @@ public class MCMAQuestion extends MCQuestion{
       
       while(validResponse == false){
         
-        if(choice < 0 || choice >= answerArray.size()){
+        if(choice < 0 || choice > answerArray.size()){
           System.out.println("Your entry is invalid.  Please retry.");
           System.out.println("Enter your answer here: ");
           a1 = s1.nextLine();
@@ -117,7 +117,7 @@ public class MCMAQuestion extends MCQuestion{
     for(int i = 0; i < answerArray.size(); i++){
       sum += answerArray.get(i).getCredit(rightAnswer);
     }
-    System.out.println("stats: " + sum  +maxValue  +baseCredit); 
+    //System.out.println("stats: " +sum+  +maxValue+  +baseCredit); 
     return (Math.min(1.0,sum) + baseCredit) * maxValue;
   }
   

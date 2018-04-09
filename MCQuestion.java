@@ -91,6 +91,7 @@ abstract public class MCQuestion extends Question{
     for(int i = 0; i<answerArray.size(); i++){
       System.out.print("   " +(char)('A' + i)+(". "));
       answerArray.get(i).print();
+      System.out.println();
     }  
   }
   
