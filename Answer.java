@@ -12,7 +12,7 @@ abstract class Answer{
   public abstract void print();
   public abstract String getCorrect();
   // parameter was removed here
-  public abstract double getCredit(Answer a);
+  public abstract double getCredit();
   public abstract void save(PrintWriter pw);
   
   

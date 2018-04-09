@@ -1,4 +1,5 @@
-//package cs342hw3;
+// MCMAAnswer: Mika Cabudol
+
 import java.util.*;
 
 public class MCMAAnswer extends MCAnswer{
@@ -12,8 +13,8 @@ public class MCMAAnswer extends MCAnswer{
   super(scan);
  }
  
- public double getCredit(Answer a)
+ public double getCredit()
  {
-  return super.getCredit(a);
+  return super.getCredit();
  }
 }

@@ -1,4 +1,4 @@
-//package cs342hw3;
+//MCSAAnswer: Mika Cabudol
 import java.util.*;
 
 public class MCSAAnswer extends MCAnswer{
@@ -12,9 +12,9 @@ public class MCSAAnswer extends MCAnswer{
   super(scan);
  }
  
- public double getCredit(Answer a)
+ public double getCredit()
  {
-  return super.getCredit(a);
+  return super.getCredit();
  }
  /* !! REMOVED FROM MCSAAnswer
  public double getCredit(Answer rightAnswer)

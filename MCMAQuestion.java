@@ -1,4 +1,5 @@
-//package cs342hw3;
+//MCMAQuestion: Mika Cabudol
+
 import java.util.*;
 import java.io.PrintWriter;
 
@@ -91,7 +92,7 @@ public class MCMAQuestion extends MCQuestion{
   double val = baseCredit;
   for (int i = 0; i < studentAnswer.size(); i++)
   {
-   val += studentAnswer.get(i).getCredit(a);
+   val += studentAnswer.get(i).getCredit();
   }
   return val;
  }
@@ -109,7 +110,7 @@ public class MCMAQuestion extends MCQuestion{
   pw.flush();
  }
  
- public void saveStudentAnswer(PrintWriter pw)
+ public void saveStudentAnswers(PrintWriter pw)
  {
   pw.println("MCMAAnswer");
   pw.println(studentAnswer.size());

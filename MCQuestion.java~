@@ -102,7 +102,7 @@ abstract public class MCQuestion extends Question{
   double creditSum = 0;
   for(int i=0;i<answerArray.size();i++){
     // you took out paramater ans here
-   creditSum+= answerArray.get(i).getCredit();
+   creditSum+= answerArray.get(i).getCredit(ans);
   }
   
   return creditSum;
