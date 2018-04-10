@@ -1,4 +1,4 @@
-# CS 342 Exam-Relatd Classes
+# CS 342 Exam-Related Classes
 
 ## Alexander Moreno (amoren26)
 - ExamTaker.java
