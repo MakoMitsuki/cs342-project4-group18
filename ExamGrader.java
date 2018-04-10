@@ -25,9 +25,19 @@ public class ExamGrader{
       }
    }
 
+   // confirm that they are the same file here
+   
+   System.out.println("Scanning exam file...");
+   // get exam and answers
+   Scanner escan = new Scanner(efile);
+   Exam e = new Exam(escan);
+   escan.close();
+   System.out.println("Exam loaded.");
+
    String s = "";
    File sfile = new File("");
-   while(s.equals(""))
+   boolean isPair = false;
+   while(s.equals("") && !isPair)
    {
     System.out.println("Enter the directory of the Student Answer");
      s = ScannerFactory.getKS().nextLine();
@@ -38,23 +48,19 @@ public class ExamGrader{
      else
      {
       sfile = new File(s);
-      break;
+      System.out.println("Scanning student answer file...");
+      Scanner ascan = new Scanner(sfile);
+      isPair = e.restoreStudentAnswers(ascan);
+      ascan.close();
+      if (isPair)
+      {
+        System.out.println("Answer file loaded.");
+        break;
+      }
      }
    }
 
-   // confirm that they are the same file here
    
-   System.out.println("Scanning exam file...");
-   // get exam and answers
-   Scanner escan = new Scanner(efile);
-   Exam e = new Exam(escan);
-   escan.close();
-   System.out.println("Exam loaded.");
-   System.out.println("Scanning student answer file...");
-   Scanner ascan = new Scanner(sfile);
-   e.restoreStudentAnswers(ascan);
-   ascan.close();
-   System.out.println("Answer file loaded.");
    System.out.println("Reporting score...");
    
    e.reportQuestionValues();

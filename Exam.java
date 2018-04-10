@@ -205,33 +205,42 @@ public class Exam {
   }
   
   // edited by Mika C.
-  void restoreStudentAnswers(Scanner Scan){
+  boolean restoreStudentAnswers(Scanner Scan){
     studentname = Scan.nextLine();
-    Scan.nextLine(); // skips exam name
-    for (int i=0; i < questionArray.size(); i++)
+    studentexam = Scan.nextLine();
+    if (studentexam.equals(this.name))
     {
-      Scan.nextLine(); // skips space
-      String type = Scan.nextLine();
-      if (type.equals("MCSAAnswer"))
-      {
-        MCSAQuestion q = (MCSAQuestion) questionArray.get(i);
-        q.restoreStudentAnswers(Scan);
+      for (int i=0; i < questionArray.size(); i++)
+        {
+        Scan.nextLine(); // skips space
+        String type = Scan.nextLine();
+        if (type.equals("MCSAAnswer"))
+        {
+          MCSAQuestion q = (MCSAQuestion) questionArray.get(i);
+          q.restoreStudentAnswers(Scan);
+        }
+        if (type.equals("MCMAAnswer"))
+        {
+          MCMAQuestion q = (MCMAQuestion) questionArray.get(i);
+          q.restoreStudentAnswers(Scan);
+        }
+        if (type.equals("SAAnswer"))
+        {
+          SAQuestion q = (SAQuestion) questionArray.get(i);
+          q.restoreStudentAnswers(Scan);
+        }
+        if (type.equals("NumAnswer"))
+        {
+          NumQuestion q = (NumQuestion) questionArray.get(i);
+          q.restoreStudentAnswers(Scan);
+        }
       }
-      if (type.equals("MCMAAnswer"))
-      {
-        MCMAQuestion q = (MCMAQuestion) questionArray.get(i);
-        q.restoreStudentAnswers(Scan);
-      }
-      if (type.equals("SAAnswer"))
-      {
-        SAQuestion q = (SAQuestion) questionArray.get(i);
-        q.restoreStudentAnswers(Scan);
-      }
-      if (type.equals("NumAnswer"))
-      {
-        NumQuestion q = (NumQuestion) questionArray.get(i);
-        q.restoreStudentAnswers(Scan);
-      }
+      return true;
+    }
+    else
+    {
+      System.out.println("Student Answer does not match.");
+      return false;
     }
   }
   
