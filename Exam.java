@@ -197,7 +197,8 @@ public class Exam {
     
   }
   
-     // edited by Mika C.
+  // ===========================================================
+  // FOR EXAMGRADER.java -- mika c.
   boolean restoreStudentAnswers(Scanner Scan){
     studentname = Scan.nextLine();
     String studentexam = Scan.nextLine();
@@ -237,10 +238,6 @@ public class Exam {
     }
   }
   
-  
-  // ===========================================================
-  // FOR EXAMGRADER.java
-  // Written by Mika Cabudol
   void toCSV(PrintWriter pw)
   {
     StringBuilder csv = new StringBuilder();
