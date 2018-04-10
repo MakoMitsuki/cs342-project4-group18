@@ -79,5 +79,11 @@ class SAQuestion extends Question{
     pw.println(text); 
   }
   
+   public void restoreStudentAnswers(Scanner Scan)
+   {
+     String sA = Scan.nextLine();
+     studentAnswer = new SAAnswer(sA);
+   }
+  
   
 }

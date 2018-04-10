@@ -1,16 +1,5 @@
-//remove
-//package cs342;
-
-/*
- * Alexander Moreno
- * CS 342 Homework 1
- * NETID: amoren26
- */
-
 import java.util.Scanner;
 import java.io.PrintWriter;
-
-
 
  public abstract class Question {
  

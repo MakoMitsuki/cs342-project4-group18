@@ -42,7 +42,6 @@ public class MCSAQuestion extends MCQuestion{
     return null;
   }
   
-  /* !!!!!!!!!!! beware of setSelected */
   public void getAnswerFromStudent()
   {
     //

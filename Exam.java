@@ -20,6 +20,7 @@ public class Exam {
   private double totalPossibleScore;
   private double totalScore;
   private Scanner scanner;
+  private String studentname = "Unknown Student";
   
   
   Exam(String testName, Scanner scnr){
@@ -203,16 +204,52 @@ public class Exam {
     
   }
   
-  void restoreStudentAnswers(Scanner scanner){
-    scanner.nextLine();//skip first line, has name //alt, this line is student name. So add a new student var to exam?
-    
-    
-    for(int i =0; i <questionArray.size();i++){
-      questionArray.get(i).restoreStudentAnswers(scanner);
-      scanner.nextLine();//skip blank line
+  // edited by Mika C.
+  void restoreStudentAnswers(Scanner Scan){
+    studentname = Scan.nextLine();
+    Scan.nextLine(); // skips exam name
+    for (int i=0; i < questionArray.size(); i++)
+    {
+      Scan.nextLine(); // skips space
+      String type = Scan.nextLine();
+      if (type.equals("MCSAAnswer"))
+      {
+        MCSAQuestion q = (MCSAQuestion) questionArray.get(i);
+        q.restoreStudentAnswers(Scan);
+      }
+      if (type.equals("MCMAAnswer"))
+      {
+        MCMAQuestion q = (MCMAQuestion) questionArray.get(i);
+        q.restoreStudentAnswers(Scan);
+      }
+      if (type.equals("SAAnswer"))
+      {
+        SAQuestion q = (SAQuestion) questionArray.get(i);
+        q.restoreStudentAnswers(Scan);
+      }
+      if (type.equals("NumAnswer"))
+      {
+        NumQuestion q = (NumQuestion) questionArray.get(i);
+        q.restoreStudentAnswers(Scan);
+      }
     }
-    //System.out.print("Answers have been restored.");
-    
+  }
+  
+  
+  // ===========================================================
+  // FOR EXAMGRADER.java
+  // Written by Mika Cabudol
+  void toCSV(PrintWriter pw)
+  {
+    StringBuilder csv = new StringBuilder();
+    csv.append(studentname + "," + this.getValue() +"\n");
+    csv.append("Question,Score\n");
+    for (int i  = 1; i <= questionArray.size(); i++){
+      csv.append(i+","+questionArray.get(i-1).getValue()+"\n");
+    }
+    pw.write(csv.toString());
+    pw.flush();
+    System.out.println("Report generated.");
   }
   
 }

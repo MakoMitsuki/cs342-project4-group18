@@ -15,7 +15,7 @@ class NumQuestion extends Question{
   
   NumQuestion(Scanner s1){
     
-    // get the question and it's max value
+    // get the question and its max value
     //System.out.println("SAQ");
     super(s1);
     // now get the answer
@@ -66,5 +66,12 @@ class NumQuestion extends Question{
     pw.println(text); 
   }
   
-  
+  public void restoreStudentAnswers(Scanner Scan)
+  {
+    double a1 = Scan.nextDouble();
+    // set the tolerance of 
+    NumAnswer a = new NumAnswer(a1, 0.0);
+    // answer student entered is 
+    studentAnswer = a;
+  }
 }
