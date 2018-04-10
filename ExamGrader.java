@@ -40,13 +40,13 @@ public class ExamGrader{
    while(s.equals("") && !isPair)
    {
     System.out.println("Enter the directory of the Student Answer");
-     s = ScannerFactory.getKS().nextLine();
-     if (s.equals(""))
-     {
+    s = ScannerFactory.getKS().nextLine();
+    if (s.equals(""))
+    {
       System.out.println("Unable to find file. Please try again");
-     }
-     else
-     {
+    }
+    else
+    {
       sfile = new File(s);
       System.out.println("Scanning student answer file...");
       Scanner ascan = new Scanner(sfile);
@@ -57,10 +57,8 @@ public class ExamGrader{
         System.out.println("Answer file loaded.");
         break;
       }
-     }
-   }
-
-   
+    }
+   }   
    System.out.println("Reporting score...");
    
    e.reportQuestionValues();
