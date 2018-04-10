@@ -90,9 +90,9 @@ public class MCMAQuestion extends MCQuestion{
           validResponse = true;
           c = Character.toUpperCase(a1.charAt(0));
           choice = c - 'A';
-          System.out.println("before");
+          //System.out.println("before");
           //studentAnswers.add(answers.get(choice));
-          System.out.println("after");
+          //System.out.println("after");
         
         }
       }

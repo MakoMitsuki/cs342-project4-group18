@@ -204,14 +204,14 @@ public class Exam {
     
   }
   
-  // edited by Mika C.
+     // edited by Mika C.
   boolean restoreStudentAnswers(Scanner Scan){
     studentname = Scan.nextLine();
-    studentexam = Scan.nextLine();
+    String studentexam = Scan.nextLine();
     if (studentexam.equals(this.name))
     {
       for (int i=0; i < questionArray.size(); i++)
-        {
+      {
         Scan.nextLine(); // skips space
         String type = Scan.nextLine();
         if (type.equals("MCSAAnswer"))
@@ -239,7 +239,7 @@ public class Exam {
     }
     else
     {
-      System.out.println("Student Answer does not match.");
+      System.out.println("Answer template does not match exam file.");
       return false;
     }
   }

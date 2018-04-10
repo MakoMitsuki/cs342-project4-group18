@@ -66,7 +66,7 @@ public class ExamGrader{
    e.reportQuestionValues();
 
    System.out.println();
-   System.out.println("Storing the score report in CSV file 'cs342g18.csv;...");
+   System.out.println("Storing the score report in CSV file 'cs342g18.csv'...");
    PrintWriter csvwriter = null;
     try {
      csvwriter = new PrintWriter(new File("cs342g18.csv"));

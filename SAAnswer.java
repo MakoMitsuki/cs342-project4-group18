@@ -13,9 +13,9 @@ class SAAnswer extends Answer{
   
   SAAnswer (Scanner s1){
     // got it here
-    System.out.println("made it to SAAnswer");
+    //System.out.println("made it to SAAnswer");
     text = s1.nextLine();
-    System.out.println("the answer1:  " +text);
+    //System.out.println("the answer1:  " +text);
   }
   
   public void print(){
@@ -31,10 +31,10 @@ class SAAnswer extends Answer{
   public double getCredit(Answer rightAnswer){
     
     boolean x = false;  // do string comparison
-    System.out.println("before!!!!!!!!!!!!!!!!!!!!!!  " );
+    //System.out.println("before!!!!!!!!!!!!!!!!!!!!!!  " );
     
     String temp = rightAnswer.getCorrect();
-    System.out.println("after!!!!!!!!!!!!!!!!!!!!!!  " +temp);
+    //System.out.println("after!!!!!!!!!!!!!!!!!!!!!!  " +temp);
     x = text.equalsIgnoreCase(temp);
     
     if(x){

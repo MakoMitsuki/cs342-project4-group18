@@ -20,13 +20,13 @@ import java.io.PrintWriter;
  
  //Scanner constructor
  Question(Scanner scan){
-   System.out.println("in Question");
+   //System.out.println("in Question");
    maxValue = scan.nextDouble();
-   System.out.println(maxValue);
+   //System.out.println(maxValue);
    // clear the line
    scan.nextLine(); 
    text = scan.nextLine();
-   System.out.println(text);
+   //System.out.println(text);
    
  }
  

@@ -1,0 +1,18 @@
+Ima Student
+Sample Exam Title
+
+SAAnswer
+Encapsulation
+
+MCSAAnswer
+Peanut butter and jelly
+
+MCMAAnswer
+3
+Harry Potter
+Rubeus Hagrid
+Bilbo Baggins
+
+NumAnswer
+42.0
+
