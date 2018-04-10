@@ -1,12 +1,5 @@
 
-//package cs342;
-
-/*
- * Alexander Moreno
- * CS 342 Homework 1
- * NETID: amoren26
- */
-
+// Alexander Moreno
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
