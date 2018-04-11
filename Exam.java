@@ -1,12 +1,3 @@
-
-package cs342;
-
-/*
- * Alexander Moreno
- * CS 342 Homework 1
- * NETID: amoren26
- */
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -108,9 +99,9 @@ public class Exam {
   }
   
   public void removeNthQuestion(int n){
-	  if(questionArray.size() >= 1){
-		  questionArray.remove(n);
-	  }
+   if(questionArray.size() >= 1){
+    questionArray.remove(n);
+   }
   }
   
   public void reorderQuestions(){
@@ -120,15 +111,15 @@ public class Exam {
   
   public void reorderMCAnswers(int pos){
     //Reorder answers of the posth question
-	    if (pos < 0){
-	        for(int i = 0;i<questionArray.size();i++){
-	          if(questionArray.get(i) instanceof MCQuestion){
-	            ((MCQuestion)questionArray.get(i)).reorderAnswers();
-	            
-	          }
-	        }
-	        return;
-	      }
+     if (pos < 0){
+         for(int i = 0;i<questionArray.size();i++){
+           if(questionArray.get(i) instanceof MCQuestion){
+             ((MCQuestion)questionArray.get(i)).reorderAnswers();
+             
+           }
+         }
+         return;
+       }
     if(questionArray.get(pos) instanceof MCQuestion){
       ((MCQuestion)questionArray.get(pos)).reorderAnswers();
       

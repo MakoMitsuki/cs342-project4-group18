@@ -1,4 +1,3 @@
-package cs342;
 import java.util.*;
 import java.io.PrintWriter;
 
@@ -19,12 +18,12 @@ public abstract class MCAnswer extends Answer {
  
    // get points
    creditIfSelected = s1.nextDouble();
-   System.out.println(creditIfSelected);
+   //System.out.println(creditIfSelected);
    // skip space
    s1.skip(" ");
    // get answer
    text = s1.nextLine();
-   System.out.println(text);
+   //System.out.println(text);
    selected = false;
   
  }
@@ -55,7 +54,7 @@ public abstract class MCAnswer extends Answer {
  /* NEW */
  public double getCredit(Answer a)
  {
-   System.out.println("this is the credit if selected: " +creditIfSelected);
+   //System.out.println("this is the credit if selected: " +creditIfSelected);
   return selected ? creditIfSelected : 0.0;
  }
  

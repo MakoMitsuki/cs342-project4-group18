@@ -1,4 +1,3 @@
-package cs342;
 import java.util.*;
 import java.io.PrintWriter;
 
