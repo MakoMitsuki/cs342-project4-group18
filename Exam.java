@@ -13,6 +13,11 @@ public class Exam {
   private Scanner scanner;
   private String studentname = "Unknown Student";
   
+    // added variables
+  private boolean complete;
+  private int numAnswered;
+  // exam is complete once all questions have been answered
+  
   
   Exam(String testName, Scanner scnr){
     name =  testName;
@@ -24,6 +29,8 @@ public class Exam {
   Exam(Scanner Nscanner){
     questionArray = new ArrayList<Question>();
     scanner = ScannerFactory.getKS();
+    numAnswered = 0;
+    complete = false;
     
     name = Nscanner.nextLine();//first line of file SHOULD be title of Exam
     
@@ -133,11 +140,23 @@ public class Exam {
   //question to be answered
   //2. if pos is less than 0, then all answers are iterated through, each printing the question, then 
   // a text input prompt for each.
+  
+  
+  
   public void getAnswerFromStudent(int pos){
+    
     //Prompt user to enter answer for posth question
-    if(pos >= 0 && pos < questionArray.size()){
+    if(pos >= 0 && pos <= questionArray.size()){
+      System.out.print((pos+1) + ". " );
+      questionArray.get(pos).print();
       questionArray.get(pos).getAnswerFromStudent();
-    }else{
+      
+      if(questionArray.get(pos).isAnswered()){
+        numAnswered++;
+      }      
+    }
+    
+    else{
       System.out.println("Error: index out of range questions index.");
     }
     
@@ -146,8 +165,44 @@ public class Exam {
         System.out.print((i+1) + ". " );
         questionArray.get(i).print();
         questionArray.get(i).getAnswerFromStudent();
+        
+        if(questionArray.get(i).isAnswered()){
+          numAnswered++;
+        }
       }
     }
+    
+    if(numAnswered == questionArray.size()){
+      System.out.println("You answered all questions.");
+      complete = true;
+    }
+    
+    else{
+      while(!complete){
+        System.out.println("Here are the questions you skipped.");
+        System.out.println("Please answer them to proceed");
+        
+        for(int i =0; i < questionArray.size();i++){
+          if(! questionArray.get(i).isAnswered()){
+            System.out.print((i+1) + ". " );
+            questionArray.get(i).print();
+            questionArray.get(i).getAnswerFromStudent();
+            
+            if(questionArray.get(i).isAnswered()){
+              numAnswered++;
+            }
+          }
+      }
+        
+        if(numAnswered == questionArray.size()){
+      System.out.println("You answered all questions.");
+      complete = true;
+    }
+      }
+    
+    
+  }
+    
     
     
   }
@@ -261,6 +316,11 @@ public class Exam {
     pw.write(csv.toString());
     pw.flush();
     System.out.println("Report generated.");
+  }
+  
+  public boolean isComplete()
+  {
+    return complete;
   }
 
 }

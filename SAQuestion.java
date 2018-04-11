@@ -42,9 +42,21 @@ class SAQuestion extends Question{
   
   public void getAnswerFromStudent(){
     //print();
+    
+    System.out.println("If you want to skip this question");
+    System.out.println("and come back to it later enter: skip");
+    
     Scanner s1 = new Scanner(System.in);
     String a1 = s1.nextLine();
-    //System.out.println("here is the entered one fresh: " +a1);
+    
+    if(a1.equalsIgnoreCase("skip")){
+      System.out.println("You have decided to skip this question.");
+      System.out.println("You can return to it once you complete");
+      System.out.println("the rest of the exam.");
+      answered = false;
+    }
+    
+    else{
     
     
     //
@@ -55,8 +67,11 @@ class SAQuestion extends Question{
     SAAnswer a = new SAAnswer(a1);
     // answer student entered is 
     studentAnswer = a;
+    answered = true;
     //System.out.println("second one in from student: ");
     //studentAnswer.print();
+    }
+   
    
   }
   

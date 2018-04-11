@@ -37,15 +37,34 @@ class NumQuestion extends Question{
   
   public void getAnswerFromStudent(){
     //print();
-    System.out.println("Enter a numerical answer");
+    
+    // get scanner input
+    System.out.println("If you want to skip this question");
+    System.out.println("and come back to it later enter: skip");
+    System.out.println("otherwise press enter to proceed");
+    
     Scanner s1 = new Scanner(System.in);
-    double a1 = s1.nextDouble();
+    String a1 = s1.nextLine();
+    
+    if(a1.equalsIgnoreCase("skip")){
+      System.out.println("You have decided to skip this question.");
+      System.out.println("You can return to it once you complete");
+      System.out.println("the rest of the exam.");
+      answered = false;
+    }
+    
+    else{
+      // changes here////////////////////////////////////////////////////
+    System.out.println("Enter a numerical answer");
+    double a2 = s1.nextDouble();
     
     
     // set the tolerance of 
-    NumAnswer a = new NumAnswer(a1, 0.0);
+    NumAnswer a = new NumAnswer(a2, 0.0);
     // answer student entered is 
     studentAnswer = a;
+    answered = true;
+    }
     
    
   }

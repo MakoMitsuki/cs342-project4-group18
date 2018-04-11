@@ -51,22 +51,35 @@ public class MCMAQuestion extends MCQuestion{
   /////////////////////////////////////////////////////////////////////////////////////
   
   public void getAnswerFromStudent()
+
   {
     //
     boolean validResponse = false;
-    
-//    for(int i = 0; i < answerArray.size(); i++){
-//        answers.get(i).setSelected(false);
-//      }
     
     // print the question
     print();
     
     // get scanner input
-    System.out.println("Enter one selection at a time.");
-    System.out.println("When finished making selection(s) enter DONE");
+    System.out.println("If you want to skip this question");
+    System.out.println("and come back to it later enter: skip");
+    System.out.println("otherwise press enter to proceed");
+    
     Scanner s1 = new Scanner(System.in);
     String a1 = s1.nextLine();
+    
+    if(a1.equalsIgnoreCase("skip")){
+      System.out.println("You have decided to skip this question.");
+      System.out.println("You can return to it once you complete");
+      System.out.println("the rest of the exam.");
+      answered = false;
+    }
+    
+    
+    
+    else{
+    System.out.println("Enter one selection at a time.");
+    System.out.println("When finished making selection(s) enter DONE");
+    a1 = s1.nextLine();
     char c = Character.toUpperCase(a1.charAt(0));
     int choice = c - 'A';
     
@@ -88,11 +101,7 @@ public class MCMAQuestion extends MCQuestion{
         else{
           validResponse = true;
           c = Character.toUpperCase(a1.charAt(0));
-          choice = c - 'A';
-          System.out.println("before");
-          //studentAnswers.add(answers.get(choice));
-          System.out.println("after");
-        
+          choice = c - 'A';        
         }
       }
             
@@ -104,7 +113,10 @@ public class MCMAQuestion extends MCQuestion{
       // prompt for next line
       a1 = s1.nextLine();
     }
+    
+    answered = true;
   }
+ }
   
   
   ////////////////////////////////////////////////////////////////////////////////////
