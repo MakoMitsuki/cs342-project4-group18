@@ -1,3 +1,4 @@
+package cs342;
 import java.util.*;
 
 public class ScannerFactory {

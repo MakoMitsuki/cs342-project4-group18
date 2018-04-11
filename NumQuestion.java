@@ -1,3 +1,4 @@
+package cs342;
 import java.util.*;
 import java.io.*;
 
@@ -20,7 +21,12 @@ class NumQuestion extends Question{
     
   }
   
-  public Answer getNewAnswer(Scanner s1){
+  public NumQuestion(String text, double maxVal, double tol) {
+	  super(text,maxVal);
+	  tolerance = tol;
+}
+
+public Answer getNewAnswer(Scanner s1){
     NumAnswer y = new NumAnswer(s1);
     return y;
   }
@@ -79,7 +85,8 @@ class NumQuestion extends Question{
   public void save(PrintWriter pw)
   {
     pw.println(maxValue);
-    pw.println(text); 
+    pw.println(text);
+    rightAnswer.save(pw);
   }
   
   public void restoreStudentAnswers(Scanner Scan)

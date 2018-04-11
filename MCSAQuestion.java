@@ -1,3 +1,4 @@
+package cs342;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -44,25 +45,10 @@ public class MCSAQuestion extends MCQuestion{
     // print the question
     // print();
     
-    
-    
     // get scanner input
     System.out.println("Enter your answer here: ");
-    System.out.println("If you want to skip this question");
-    System.out.println("and come back to it later enter: skip");
-    
     Scanner s1 = new Scanner(System.in);
     String a1 = s1.nextLine();
-    
-    if(a1.equalsIgnoreCase("skip")){
-      System.out.println("You have decided to skip this question.");
-      System.out.println("You can return to it once you complete");
-      System.out.println("the rest of the exam.");
-      answered = false;
-    }
-    
-    else{
-    
     char c = Character.toUpperCase(a1.charAt(0));
     int choice = c - 'A';
     
@@ -92,12 +78,8 @@ public class MCSAQuestion extends MCQuestion{
     }
     
     // now set the student's choice
-    answerArray.get(choice).setSelected(true);
-    answered = true;
-    }
+    answerArray.get(choice).setSelected(true); 
   }
-  
-  
   
   public double getValue()
   {
