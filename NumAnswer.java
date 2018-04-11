@@ -1,6 +1,6 @@
 // Michael Pedraza
 // mpedra5
-
+package cs342;
 import java.util.*;
 import java.io.*;
 
@@ -19,9 +19,9 @@ class NumAnswer extends Answer{
   NumAnswer (Scanner s1){
     //System.out.println("enter an answer");
     number = s1.nextDouble();
-    //System.out.println(number);
+    System.out.println(number);
     // clear the line
-    //s1.nextLine();
+    s1.nextLine();
     // get tolerance level
     tolerance = s1.nextDouble();
     

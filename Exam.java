@@ -1,5 +1,12 @@
 
-// Alexander Moreno
+package cs342;
+
+/*
+ * Alexander Moreno
+ * CS 342 Homework 1
+ * NETID: amoren26
+ */
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -100,6 +107,11 @@ public class Exam {
     }
   }
   
+  public void removeNthQuestion(int n){
+	  if(questionArray.size() >= 1){
+		  questionArray.remove(n);
+	  }
+  }
   
   public void reorderQuestions(){
     shuffleArray(questionArray);
@@ -108,18 +120,20 @@ public class Exam {
   
   public void reorderMCAnswers(int pos){
     //Reorder answers of the posth question
+	    if (pos < 0){
+	        for(int i = 0;i<questionArray.size();i++){
+	          if(questionArray.get(i) instanceof MCQuestion){
+	            ((MCQuestion)questionArray.get(i)).reorderAnswers();
+	            
+	          }
+	        }
+	        return;
+	      }
     if(questionArray.get(pos) instanceof MCQuestion){
       ((MCQuestion)questionArray.get(pos)).reorderAnswers();
       
     }
-    if (pos < 0){
-      for(int i = 0;i<questionArray.size();i++){
-        if(questionArray.get(i) instanceof MCQuestion){
-          ((MCQuestion)questionArray.get(pos)).reorderAnswers();
-          
-        }
-      }
-    }
+
     
   }
   
@@ -177,7 +191,11 @@ public class Exam {
     
   }
   
-  void save(PrintWriter printWrit){
+  
+  
+  
+  
+ public void save(PrintWriter printWrit){
     printWrit.println(name);
     printWrit.println();
     for(int i =0;i<questionArray.size();i++){
@@ -187,7 +205,7 @@ public class Exam {
     printWrit.println("EOF");
   }
   
-  void saveStudentAnswers(PrintWriter printWrit){
+  public void saveStudentAnswers(PrintWriter printWrit){
     //write student Answers to a file
     for(int i =0;i<questionArray.size();i++){
       questionArray.get(i).saveStudentAnswers(printWrit);
@@ -197,15 +215,14 @@ public class Exam {
     
   }
   
-  // ===========================================================
-  // FOR EXAMGRADER.java -- mika c.
-  boolean restoreStudentAnswers(Scanner Scan){
+  // edited by Mika C.
+  public boolean restoreStudentAnswers(Scanner Scan){
     studentname = Scan.nextLine();
     String studentexam = Scan.nextLine();
     if (studentexam.equals(this.name))
     {
       for (int i=0; i < questionArray.size(); i++)
-      {
+        {
         Scan.nextLine(); // skips space
         String type = Scan.nextLine();
         if (type.equals("MCSAAnswer"))
@@ -233,12 +250,16 @@ public class Exam {
     }
     else
     {
-      System.out.println("Answer template does not match exam file.");
+      System.out.println("Student Answer does not match.");
       return false;
     }
   }
   
-  void toCSV(PrintWriter pw)
+  
+  // ===========================================================
+  // FOR EXAMGRADER.java
+  // Written by Mika Cabudol
+  public void toCSV(PrintWriter pw)
   {
     StringBuilder csv = new StringBuilder();
     csv.append(studentname + "," + this.getValue() +"\n");
@@ -250,5 +271,5 @@ public class Exam {
     pw.flush();
     System.out.println("Report generated.");
   }
-  
+
 }

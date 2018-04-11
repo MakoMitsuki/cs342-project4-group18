@@ -1,6 +1,6 @@
 // Michael Pedraza
 // mpedra5
-//package cs342hw3;
+package cs342;
 import java.util.*;
 import java.io.*;
 
@@ -20,11 +20,11 @@ class SAQuestion extends Question{
     // get the question and it's max value
     //System.out.println("SAQ");
     super(s1);
-    //System.out.println("Got the question in SAQuestion.");
-    //System.out.println("The question obtained is:" +text);
+    System.out.println("Got the question in SAQuestion.");
+    System.out.println("The question obtained is:" +text);
     // now get the answer
     rightAnswer = new SAAnswer(s1);
-    //System.out.println(rightAnswer.getCorrect());
+    System.out.println(rightAnswer.getCorrect());
     
   }
   
@@ -75,8 +75,9 @@ class SAQuestion extends Question{
   
   public void save(PrintWriter pw)
   {
-    pw.println(maxValue);
-    pw.println(text); 
+	pw.println("SAQuestion");
+	super.save(pw);
+	rightAnswer.save(pw);
   }
   
    public void restoreStudentAnswers(Scanner Scan)

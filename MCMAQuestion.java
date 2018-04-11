@@ -1,4 +1,4 @@
-//package cs342hw3;
+package cs342;
 import java.util.*;
 import java.io.PrintWriter;
 
@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 public class MCMAQuestion extends MCQuestion{
   protected ArrayList<MCAnswer> studentAnswer = new ArrayList<MCAnswer>();
-  public double baseCredit = 0.0;
+  public double baseCredit;
   
   public MCMAQuestion(String Text, double MaxValue, double BaseCredit)
   {
@@ -90,9 +90,9 @@ public class MCMAQuestion extends MCQuestion{
           validResponse = true;
           c = Character.toUpperCase(a1.charAt(0));
           choice = c - 'A';
-          //System.out.println("before");
+          System.out.println("before");
           //studentAnswers.add(answers.get(choice));
-          //System.out.println("after");
+          System.out.println("after");
         
         }
       }
@@ -124,9 +124,11 @@ public class MCMAQuestion extends MCQuestion{
   public void save(PrintWriter pw)
   {
     pw.println("MCMAQuestion");
-    super.save(pw);
+    pw.println(maxValue);
+    pw.println(text);
     pw.println(baseCredit);
     pw.println(answerArray.size());
+    
     for (int i=0; i < answerArray.size(); i++)
     {
       answerArray.get(i).save(pw);

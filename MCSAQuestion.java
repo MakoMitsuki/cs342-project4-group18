@@ -1,4 +1,4 @@
-//package cs342hw3;
+package cs342;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -100,11 +100,12 @@ public class MCSAQuestion extends MCQuestion{
   {
     pw.println("MCSAQuestion");
     super.save(pw);
+    /*
     pw.println(answerArray.size());
     for (int i=0; i < answerArray.size(); i++)
     {
       answerArray.get(i).save(pw);
-    }
+    }*/
     pw.flush();
   }
   

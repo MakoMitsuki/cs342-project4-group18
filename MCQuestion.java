@@ -1,7 +1,7 @@
 //Alexander Moreno
 //NETID: amoren26
 
-//package cs342;
+package cs342;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,7 +9,7 @@ import java.util.Random;
 import java.io.PrintWriter;
 
 abstract public class MCQuestion extends Question{
-  protected double baseCredit; //Used by child class MCMAQuestion.
+  //protected double baseCredit; //Used by child class MCMAQuestion.
   protected  ArrayList<MCAnswer> answerArray;
   private char answerChar;//Character Iterator for question display
   protected int maxAnswers;
@@ -115,8 +115,8 @@ abstract public class MCQuestion extends Question{
   
   public void save(PrintWriter printWrit){
     super.save(printWrit);
-    printWrit.println(maxAnswers);
-    
+    //printWrit.println(baseCredit);
+    printWrit.println(answerArray.size());
     for(int i =0; i<answerArray.size();i++){
       answerArray.get(i).save(printWrit);
       
