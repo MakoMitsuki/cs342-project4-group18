@@ -62,8 +62,10 @@ class NumQuestion extends Question{
   
   public void save(PrintWriter pw)
   {
+	pw.println("NumQuestion");
     pw.println(maxValue);
     pw.println(text); 
+    rightAnswer.save(pw);
   }
   
   public void restoreStudentAnswers(Scanner Scan)

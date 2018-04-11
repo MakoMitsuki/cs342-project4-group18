@@ -61,6 +61,7 @@ class NumAnswer extends Answer{
   public void save(PrintWriter pw)
  {
   pw.println(number);
+  pw.println(tolerance);
  }
   
   
