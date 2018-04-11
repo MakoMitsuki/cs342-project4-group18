@@ -2,6 +2,8 @@
 
 ## Alexander Moreno (amoren26)
 - ExamBuilder.java
+- Exam.java
+- Question, Answer and MCQuestion/Answer classes
 
 ## Mika Cabudol (mcabud2)
 - ExamGrader.java
