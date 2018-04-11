@@ -109,6 +109,14 @@ public class ExamBuilder {
 				}
 				
 				//get basecredit
+				double BaseCredit = 0.0;
+				System.out.print("Enter base credit value(double): ");
+				try{
+				BaseCredit = Double.parseDouble(KBScanner.nextLine());
+				}
+				catch(NumberFormatException e){
+					System.out.println("Error: Input was NOT a double.");
+				}
 				
 				
 				
