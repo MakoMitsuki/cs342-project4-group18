@@ -124,6 +124,13 @@ public class ExamBuilder {
 				System.out.print("Enter Text for Question: ");
 				Text = KBScanner.nextLine();
 				
+				try{
+				MaxVal = Double.parseDouble(KBScanner.nextLine());
+				}
+				catch(NumberFormatException e){
+					System.out.println("Error: Input was NOT a double.");
+				}
+				
 			}
 			else{
 				System.out.println("Error: No such question type as \"" + QuestionToken + "\"");
