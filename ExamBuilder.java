@@ -43,8 +43,102 @@ public class ExamBuilder {
 	}
 	//adds a new question based off of input
 	public  static void addNewQuestion(Exam exam,Scanner KBScanner,StringTokenizer strTok){
+		String Text;
+		double MaxVal = 0.0;
+		String userInput = "";
+		String[] userArr;
+		int numAnswers = 0;
+		double AnswerVal;
+		
+		
+		if(strTok.hasMoreTokens()){
+			String QuestionToken = strTok.nextToken();
+			QuestionToken = QuestionToken.toLowerCase();
+			
+			
+			
+			if(QuestionToken.equals("mcsaquestion")){
+				System.out.print("Enter Text for Question: ");
+				Text = KBScanner.nextLine();
+				
+				System.out.print("Enter max value for Question as a double: ");
+				
+				try{
+				MaxVal = Double.parseDouble(KBScanner.nextLine());
+				}
+				catch(NumberFormatException e){
+					System.out.println("Error: Input was NOT a double.");
+				}
+				
+				MCSAQuestion q = new MCSAQuestion(Text,MaxVal);
+				
+				System.out.println("Add up to 6 answers to your question in format: <value(double)> <Text>.\ntype Done to exit.");
+				numAnswers = 0;
+				while(!(userInput.toLowerCase().equals("done")) && (numAnswers <= 5)){
+					System.out.print("Answer #"+(numAnswers+1)+":");
+					userInput = KBScanner.nextLine();
+					userArr = userInput.split(" ",2);
+					if(userArr.length == 2){
+						try{
+							MCSAAnswer newAns = new MCSAAnswer(userArr[1],Double.parseDouble(userArr[0]));
+							numAnswers++;
+							q.addAnswer(newAns);
+						}
+						catch(NumberFormatException e){
+							System.out.println("Error: Your first argument is not a valid double value.");
+						}
+					}//yes
+					
+				}
+				exam.addQuestion(q);
+				return;
+				
+				
+			}
+			else if (QuestionToken.equals("MCMAQuestion")){
+				System.out.print("Enter Text for Question: ");
+				Text = KBScanner.nextLine();
+				
+				System.out.print("Enter max value for Question as a double: ");
+				
+				try{
+				MaxVal = Double.parseDouble(KBScanner.nextLine());
+				}
+				catch(NumberFormatException e){
+					System.out.println("Error: Input was NOT a double.");
+				}
+				
+				//get basecredit
+				
+				
+				
+				
+			}
+			else if (QuestionToken.equals("SAQuestion")){
+				System.out.print("Enter Text for Question: ");
+				Text = KBScanner.nextLine();
+				
+				
+			}
+			else if (QuestionToken.equals("NumQuestion")){
+				System.out.print("Enter Text for Question: ");
+				Text = KBScanner.nextLine();
+				
+			}
+			else{
+				System.out.println("Error: No such question type as \"" + QuestionToken + "\"");
+			}
+		}
+	}
+	
+	
+	//should add new answers to MCAnswers, up to their max. If question is a single answer question
+	//It will overwrite the old answer.
+	public static void addNewAnswers(){
+		//Might not even used
 		
 	}
+	
 	
 	//remove question at qNum-1
 	public static  void removeQuestion(Exam exam, StringTokenizer strTok) {
@@ -64,12 +158,16 @@ public class ExamBuilder {
 			}
 			else if(arg.equals("answers")){
 				if(strTok.hasMoreTokens()){
-					exam.reorderMCAnswers(Integer.parseInt(strTok.nextToken()));
+					exam.reorderMCAnswers(Integer.parseInt(strTok.nextToken())-1);
 				}
 				else {
 					exam.reorderMCAnswers(-1);
 				}
 				
+			}
+			else
+			{
+				System.out.println("Error: Exact command should be : reorder <Questions|Answers> <Integer for specific question>");
 			}
 		}
 		else{
@@ -78,8 +176,28 @@ public class ExamBuilder {
 		}
 	}
 	//Print Exam to screen or file
-	public  static void printExam(Exam exam){
-		exam.print();
+	//If given a filename, works exactly like saveExam().
+	public  static void printExam(Exam exam,StringTokenizer strTok){
+		if(strTok.hasMoreTokens()){
+			try {
+				//get new filename
+				String filename = strTok.nextToken();
+				File newFile = new File(filename);
+				PrintWriter writer;
+				writer = new PrintWriter(newFile);
+				exam.save(writer);
+				writer.close();
+			} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("Error: No such file");
+				
+			}
+		}
+		else{
+			exam.print();
+		}
+		
 	}
 	
 	//save exam to a file, filename given by user, if file not found, makes a new one.
@@ -141,11 +259,11 @@ public class ExamBuilder {
 				if(currentExam == null){
 					System.out.println("Exam is NULL!!!!\n");
 				}
-				printExam(currentExam);
+				printExam(currentExam, strTok);
 			}
 			else if(userTok.equals("add"))
 			{
-				
+				addNewQuestion(currentExam,InputScanner,strTok);
 			}
 			else if(userTok.equals("remove")){
 				removeQuestion(currentExam,strTok);

@@ -38,6 +38,7 @@ abstract public class MCQuestion extends Question{
     //maxAnswers = Integer.parseInt(scanner.nextLine());
     rightAnswer = null;
     studentAnswer = null;
+    maxAnswers = 6;
     
   }
   
@@ -77,6 +78,7 @@ abstract public class MCQuestion extends Question{
     if(answerArray.size() != maxAnswers){
       answerArray.add( ans);
     }
+    
   }
   
   public void setRightAnswer(MCAnswer ans){
