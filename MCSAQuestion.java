@@ -1,11 +1,5 @@
-package cs342;
 import java.util.Scanner;
 import java.io.PrintWriter;
-
-/* !!!!!!!!!!!!!! NOTE
- * BEWARE OF .setSelected() BEING USED AT 
- * GET ANSWER FROM STUDENT
- */
 
 public class MCSAQuestion extends MCQuestion{
   

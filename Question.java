@@ -1,4 +1,3 @@
-package cs342;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -23,11 +22,11 @@ import java.io.PrintWriter;
  Question(Scanner scan){
    //System.out.println("in Question");
    maxValue = scan.nextDouble();
-   System.out.println(maxValue);
+   //System.out.println(maxValue);
    // clear the line
    scan.nextLine(); 
    text = scan.nextLine();
-   System.out.println(text);
+   //System.out.println(text);
    
  }
  
