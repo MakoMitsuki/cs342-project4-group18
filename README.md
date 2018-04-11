@@ -1,7 +1,7 @@
 # CS 342 Exam-Related Classes
 
 ## Alexander Moreno (amoren26)
-- ExamTaker.java
+- ExamBuilder.java
 
 ## Mika Cabudol (mcabud2)
 - ExamGrader.java
@@ -10,4 +10,4 @@
 - toCSV() class added in Alex's Exam.java, changed restoreStudentAnswers() from void to boolean
 
 ## Michael Pedraza (mpedra5)
-- ExamBuilder.java
+- ExamTaker.java
