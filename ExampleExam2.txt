@@ -1,20 +1,5 @@
 amoren26 Alexander Moreno Sample Exam
 
-SAQuestion
-5.0
-What OO principle is implemented with private variables?
-Information Hiding
-
-MCSAQuestion
-5.0
-What do you put on a peanut butter and jelly sandwich?
-5
-0.5 Peanut butter
-0.5 Jelly
-1.0 Peanut butter and jelly
-0.0 Onions
-0.0 Horseradish
-
 MCMAQuestion
 5.0
 Who went to Hogwarts?  Circle all that apply:
@@ -26,38 +11,67 @@ Who went to Hogwarts?  Circle all that apply:
 -0.2 Bilbo Baggins
 0.2 Tom Riddle
 
+NumQuestion
+5.0
+What is the value of PI?
+3.14
+1.0
+
 MCSAQuestion
 5.0
 Who was the leader of the Scourge?
 5
-1.0 Arthas
 0.0 Kel'thuzad
-0.0 Mr.Bigglesworth
-0.0 Sylvanas Windrunner
 0.0 The gnomes
-
-5.0
-What is the value of PI?
-3.14
+0.0 Sylvanas Windrunner
+0.0 Mr.Bigglesworth
+1.0 Arthas
 
 MCSAQuestion
 5.0
-Who are you?
-6
-1.0 I am you
-2.0 I am fou
-3.0 I am tou
--10.0 I am jew
-3.0 I am que
-0.0 cool
+What do you put on a peanut butter and jelly sandwich?
+5
+0.5 Peanut butter
+0.5 Jelly
+1.0 Peanut butter and jelly
+0.0 Onions
+0.0 Horseradish
+
+SAQuestion
+5.0
+What OO principle is implemented with private variables?
+Information Hiding
+
+SAQuestion
+4.2
+What is the number of life?
+42
+
+NumQuestion
+5.5
+What is the root of 4.2?
+2.04
+0.1
+
+MCSAQuestion
+5.0
+What is the due date for cs342 homework 4?
+5
+2.0 Today?
+5.0 The 12th at 3:00 PM
+-1.0 Sometime around Friday
+3.0 Look on calendar, silly.
+-10.0 Whenever I want it to be.
 
 MCMAQuestion
-5.0
-What level are the jews?
-3.0
+3.5
+TEST text?
+0.4
 5
-0.5 lvl 45
-2.0 lvl 100
--3.0 over 9000
--4.5 lvl 69
--5.0 pee
+1.0 Ans1
+1.0 Ans2
+-1.0 Ans3
+1.0 Ans4
+0.5 Ans5
+
+EOF
