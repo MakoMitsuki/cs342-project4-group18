@@ -84,6 +84,7 @@ public Answer getNewAnswer(Scanner s1){
   
   public void save(PrintWriter pw)
   {
+	pw.println("NumQuestion");
     pw.println(maxValue);
     pw.println(text);
     rightAnswer.save(pw);
