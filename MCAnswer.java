@@ -1,4 +1,3 @@
-package cs342;
 import java.util.*;
 import java.io.PrintWriter;
 
@@ -11,7 +10,7 @@ public abstract class MCAnswer extends Answer {
  protected MCAnswer(String Text, double CreditIfSelected) {
   text = Text;
   creditIfSelected = CreditIfSelected;
- }
+ } 
  
  /* NEW */
  public MCAnswer(Scanner s1)

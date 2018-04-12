@@ -1,6 +1,6 @@
 //Alexander Moreno
 //amoren26
-package cs342;
+//package cs342;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

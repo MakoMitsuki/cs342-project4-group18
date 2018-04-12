@@ -1,3 +1,6 @@
+//Alexander Moreno
+//amoren26
+//package cs342;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
