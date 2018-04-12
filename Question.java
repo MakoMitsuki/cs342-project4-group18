@@ -9,6 +9,9 @@ import java.io.PrintWriter;
  protected Answer studentAnswer;
  protected double maxValue;
  
+  // added boolean answered
+ protected boolean answered;
+ 
  //private Answer AnswerSelected;
  
  
@@ -47,8 +50,7 @@ import java.io.PrintWriter;
  
  
  public void setRightAnswer(Answer ans){
-	 rightAnswer = ans;
-  
+  rightAnswer = ans;
  }
  
  public Answer getNewAnswer(){
@@ -80,4 +82,11 @@ import java.io.PrintWriter;
   //restore student answers
   
  }
+ 
+  public boolean isAnswered()
+ {
+   return answered;
+ }
+  
+  
 }

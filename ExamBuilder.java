@@ -1,3 +1,5 @@
+//Alexander Moreno
+//amoren26
 package cs342;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -97,6 +99,9 @@ public class ExamBuilder {
 							System.out.println("Error: Your first argument is not a valid double value.");
 						}
 					}//yes
+					else{
+						System.out.println("Enter two arguments in this format <double> <Text>");
+					}
 					
 				}
 				exam.addQuestion(q);
@@ -150,6 +155,9 @@ public class ExamBuilder {
 							System.out.println("Error: Your first argument is not a valid double value.");
 						}
 					}//yes
+					else{
+						System.out.println("Enter two arguments in this format <double> <Text>");
+					}
 					
 				}
 				exam.addQuestion(q);
