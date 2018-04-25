@@ -3,24 +3,40 @@
 //package cs342;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.StringTokenizer;
 import java.io.PrintWriter;
+//gui
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+
+
 
 public class ExamBuilder {
+	private static Exam currentExam;
+	private static JFrame ExamBuilderFrame;
+	private static JPanel MainPanel;
+	private static JTextArea ExamText;
+	
+	
+	
+
 	
 	//function definitions
 	public static void printMenu(){
-		System.out.println("These are the available options:\n");
-		System.out.println("load <filename>\t-loads an exam from a filename");
-		System.out.println("save <filename>\t-saves an exam to a filename");
-		System.out.println("add <Question>\t-adds a new question to current exam");
-		System.out.println("remove <integer>\t-removes nth question in current exam");
-		System.out.println("reorder <[OPTIONAL] Answers <integer> | questions> - reorders questions or \n\tanswers with optional integer argument for a specific question\n\tIf no argument is given, then it will reorder all questions and answers.");
-		System.out.println("print <noarg|filename>\t-prints exam to screen to to a new file.");
-		System.out.println("Quit\t-Exits the ExamBuilder program");
-		System.out.println("Help\t-Prints out this menu\n\n");
+		System.out.println("These are the available options:\n"
+				+ "\nload <filename>\t-loads an exam from a filename\n"
+				+ "save <filename>\t-saves an exam to a filename\n"
+				+ "add <Question>\t-adds a new question to current exam\n"
+				+ "remove <integer>\t-removes nth question in current exam\n"
+				+ "reorder <[OPTIONAL] Answers <integer> | questions> - reorders questions or \n\tanswers with optional integer argument for a specific question\n\tIf no argument is given, then it will reorder all questions and answers.\n"
+				+ "print <noarg|filename>\t-prints exam to screen to to a new file.\n"
+				+ "Quit\t-Exits the ExamBuilder program\n"
+				+ "Help\t-Prints out this menu\n\n");
 	}
 	
 	public static  Exam loadExamFromFile(Exam exam,StringTokenizer strTok) throws FileNotFoundException {
@@ -49,6 +65,21 @@ public class ExamBuilder {
 			return null;
 		}
 	}
+	
+	public static void loadExamFromFile(File chosenFile){
+		Scanner sc;
+		try {
+			sc = new Scanner(chosenFile);
+			currentExam = new Exam(sc);
+			sc.close();//close file
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//Return reference to exam
+	}
+	
 	//adds a new question based off of input
 	public  static void addNewQuestion(Exam exam,Scanner KBScanner,StringTokenizer strTok){
 		//
@@ -331,6 +362,10 @@ public class ExamBuilder {
 		
 	}
 	
+	
+	public static void printExam(Exam exam){
+		exam.print();
+	}
 	//save exam to a file, filename given by user, if file not found, makes a new one.
 	public  static void saveExam(Exam exam, StringTokenizer strTok){
 		try {
@@ -357,10 +392,119 @@ public class ExamBuilder {
 	
 	
 	
+	private static void clearJTextArea(){
+		ExamText.setText("");
+		return;
+	}
+	
+	
+	public static void initGUI(){
+		 ExamBuilderFrame = new JFrame("ExamBuilder");
+		ExamBuilderFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ExamBuilderFrame.setSize(500, 600);
+		ExamBuilderFrame.setLocationRelativeTo(null);
+		
+		
+		//Main panel:
+		MainPanel = new JPanel();
+		MainPanel.setLayout(new BoxLayout(MainPanel,BoxLayout.X_AXIS));
+		
+		//set up exam text zone
+		ExamText = new JTextArea(100,100);
+		ExamText.setEditable(false);
+		PrintStream printStream = new PrintStream(new CustomOutputStream(ExamText));
+		System.setOut(printStream);
+		System.setErr(printStream);
+		
+		JScrollPane ExamTextFrame = new JScrollPane(ExamText);
+		ExamTextFrame.setSize(500, 500);
+		MainPanel.add(ExamTextFrame);
+		
+		
+		//Set up buttons *********************************************************************
+		JPanel MenuButtons = new JPanel();
+		MenuButtons.setLayout(new BoxLayout(MenuButtons,BoxLayout.Y_AXIS));
+		
+		//Menu Button
+		JButton printMenuButton = new JButton("Show Menu");
+		printMenuButton.setToolTipText("Prints the Menu for this program.");
+		printMenuButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				clearJTextArea();
+				printMenu();
+				//Standard 
+				return;
+			}
+		});
+		
+		
+		//LoadExamButton
+		JButton loadExamButton = new JButton("Load Exam");
+		loadExamButton.setToolTipText("Loads a new Exam from text files");
+		loadExamButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				
+				JFileChooser choose = new JFileChooser();
+				int choice = choose.showOpenDialog(choose);
+				
+				if (choice != JFileChooser.APPROVE_OPTION) return;
+				
+				 choose.getSelectedFile();
+				 clearJTextArea();
+				 loadExamFromFile(choose.getSelectedFile());
+				 printExam(currentExam);
+				
+			}
+		});
+		
+		//reorderQuestionsButton
+		JButton reorderQuestionsButton = new JButton("Reorder Questions");
+		reorderQuestionsButton.setToolTipText("Reorders the questions in the current Exam");
+		//create action for buttons
+		reorderQuestionsButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				clearJTextArea();
+				currentExam.reorderQuestions();
+				printExam(currentExam);
+			}
+		});
+		
+		
+		//Add more buttons....
+		
+		
+		
+		//Add buttons to MenuButtons
+		MenuButtons.add(printMenuButton);
+		MenuButtons.add(loadExamButton);
+		MenuButtons.add(reorderQuestionsButton);
+		
+		
+		
+		
+		
+		MainPanel.add(MenuButtons);
+		
+		ExamBuilderFrame.add(MainPanel);
+		ExamBuilderFrame.setVisible(true);
+	}
+	
 	
 	public static void main (String[] args) throws FileNotFoundException {
+		currentExam = null;
+		initGUI();
+		//*********************************************************
+
+		//MainPanel.setVisible(true);
+		//MenuButtons.setVisible(true);
+		//ExamTextFrame.setVisible(true);
+		//ExamText.setText("TEXT HERE");
+		//************************************************************
 		
-		Exam currentExam = null;
+		//Exam currentExam = null;
 
 		StringTokenizer strTok;
 		Scanner InputScanner = ScannerFactory.getKS();
