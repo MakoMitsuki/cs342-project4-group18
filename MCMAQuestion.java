@@ -1,4 +1,4 @@
-//package cs342;
+package cs342;
 
 import java.util.*;
 import java.io.PrintWriter;
@@ -118,6 +118,7 @@ public class MCMAQuestion extends MCQuestion{
     
     answered = true;
   }
+    s1.close();
  }
   
   

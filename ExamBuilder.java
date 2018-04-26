@@ -1,6 +1,6 @@
 //Alexander Moreno
 //amoren26
-//package cs342;
+package cs342;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -21,6 +21,7 @@ public class ExamBuilder {
 	private static JFrame ExamBuilderFrame;
 	private static JPanel MainPanel;
 	private static JTextArea ExamText;
+	//private static JOptionPane AlertMessager;
 	
 	
 	
@@ -305,8 +306,13 @@ public class ExamBuilder {
 	//remove question at qNum-1
 	public static  void removeQuestion(Exam exam, StringTokenizer strTok) {
 		if(strTok.hasMoreTokens()){
+			try{
 			int NthQ = Integer.parseInt(strTok.nextToken());
 			exam.removeNthQuestion(NthQ-1);
+		}
+		catch(IndexOutOfBoundsException err){
+			System.out.println("ERROR: your number was out of range.");
+		}
 		}
 	}
 	//Reorder Answers or exams
@@ -399,6 +405,7 @@ public class ExamBuilder {
 	
 	
 	public static void initGUI(){
+		//AlertMessager = new JOptionPane();
 		 ExamBuilderFrame = new JFrame("ExamBuilder");
 		ExamBuilderFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ExamBuilderFrame.setSize(500, 600);
@@ -466,14 +473,57 @@ public class ExamBuilder {
 		reorderQuestionsButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				clearJTextArea();
-				currentExam.reorderQuestions();
-				printExam(currentExam);
+				
+				if( currentExam != null)
+				{
+					clearJTextArea();
+					currentExam.reorderQuestions();
+					printExam(currentExam);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Please, load a new exam first.");
+					return;
+				}
+				
 			}
 		});
 		
-		
+		JButton removeQuestionButton = new JButton("Remove Question");
+		removeQuestionButton.setToolTipText("Remove a question by number.");
+		removeQuestionButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(currentExam != null){
+					
+					try{
+						
+						String userInput = JOptionPane.showInputDialog("Enter a number for a specific question.");
+						if(userInput.isEmpty()){
+							JOptionPane.showMessageDialog(null, "Bad Input. Please enter an Integer.");
+						}
+						
+						int nthQ = Integer.parseInt(userInput);
+						currentExam.removeNthQuestion(nthQ-1);
+					}
+					catch(NumberFormatException err){
+						JOptionPane.showMessageDialog(null, "Bad Input. Please enter an Integer.");
+						return;
+					}
+					catch(IndexOutOfBoundsException err1){
+						JOptionPane.showMessageDialog(null, "Bad Input. Your Number was out of range.");
+						return;
+					}
+					clearJTextArea();
+					printExam(currentExam);
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Please, load a new exam first.");
+				}
+			}
+		});
 		//Add more buttons....
+		
 		
 		
 		
@@ -481,6 +531,7 @@ public class ExamBuilder {
 		MenuButtons.add(printMenuButton);
 		MenuButtons.add(loadExamButton);
 		MenuButtons.add(reorderQuestionsButton);
+		MenuButtons.add(removeQuestionButton);
 		
 		
 		
@@ -551,7 +602,10 @@ public class ExamBuilder {
 			}
 			else if(userTok.equals("remove")){
 				if(currentExam != null){
-				removeQuestion(currentExam,strTok);}
+					
+						removeQuestion(currentExam,strTok);
+
+				}
 				else{
 					System.out.println("No exam loaded. Load an exam from a file.");
 				}

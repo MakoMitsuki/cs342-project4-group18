@@ -1,4 +1,4 @@
-//package cs342;
+package cs342;
 import java.util.*;
 import java.io.*;
 
@@ -72,7 +72,7 @@ public Answer getNewAnswer(Scanner s1){
     answered = true;
     }
     
-   
+   s1.close();
   }
   
   // why does it freeze here?
