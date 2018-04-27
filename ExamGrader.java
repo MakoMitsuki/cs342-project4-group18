@@ -102,11 +102,13 @@ public class ExamGrader{
 		examfield = new JTextField();
 		examfield.setMaximumSize( 
 			     new Dimension(Integer.MAX_VALUE, examfield.getPreferredSize().height) );
+		examfield.setColumns(45);
 		examfield.setEditable(true);
 		
 		studentfield = new JTextField();
 		studentfield.setMaximumSize( 
 			     new Dimension(Integer.MAX_VALUE, studentfield.getPreferredSize().height) );
+		studentfield.setColumns(45);
 		studentfield.setEditable(true);
 		
 		// ==================== BUTTONS ==============================
@@ -125,6 +127,7 @@ public class ExamGrader{
 				return;
 			}
 		});
+		gradeButton.setPreferredSize(new Dimension(200, 70));
 		
 		// BROWSE EXAM BUTTON
 		JButton browseExam = new JButton("Browse Exam");
@@ -141,6 +144,7 @@ public class ExamGrader{
 				return;
 			}
 		});
+		browseExam.setPreferredSize(new Dimension(180, 10));
 		
 		// BROWSE STUDENT BUTTON
 		JButton browseStudent = new JButton("Browse Student File");
@@ -157,6 +161,7 @@ public class ExamGrader{
 				return;
 			}
 		});
+		browseStudent.setPreferredSize(new Dimension(150, 10));
 		
 		// CREATE CSV BUTTON
 		JButton newCSV = new JButton("Create CSV Report");
@@ -171,9 +176,11 @@ public class ExamGrader{
 		
 	// ============= LABELS =======================
 	JLabel edl = new JLabel("Enter Exam Directory:");
+	edl.setHorizontalTextPosition(SwingConstants.LEFT);
 	edl.setLabelFor(examfield);
 	JLabel sdl = new JLabel("Enter Student Directory:");
 	sdl.setLabelFor(studentfield);
+	sdl.setHorizontalTextPosition(SwingConstants.LEFT);
 		
 	//====================== MAIN LAYOUT ======================
 	JPanel listPane = new JPanel();
@@ -207,15 +214,15 @@ public class ExamGrader{
 	viewPanel.add(Box.createRigidArea(new Dimension(0, 5)));
 	viewPanel.add(newCSV);
     
-    listPane.add(Box.createHorizontalGlue());
+    //listPane.add(Box.createHorizontalGlue());
 	listPane.add(edl);
 	listPane.add(Box.createRigidArea(new Dimension(5, 0)));
 	listPane.add(lPanel);
-    listPane.add(Box.createHorizontalGlue());
+    //listPane.add(Box.createHorizontalGlue());
 	listPane.add(sdl);
 	listPane.add(Box.createRigidArea(new Dimension(5, 0)));
 	listPane.add(lPanel2);
-    listPane.add(Box.createVerticalGlue());
+	listPane.add(Box.createRigidArea(new Dimension(5, 0)));
 	listPane.add(lPanel3);
 	
 	JPanel MainPanel = new JPanel();
