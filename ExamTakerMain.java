@@ -73,7 +73,7 @@ class ExamTakerMain{
   
   
   public static void initGUI(){
-   ExamTakerFrame = new JFrame("ExamBuilder");
+   ExamTakerFrame = new JFrame("ExamTaker");
   ExamTakerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   ExamTakerFrame.setSize(500, 600);
   ExamTakerFrame.setLocationRelativeTo(null);
@@ -100,14 +100,14 @@ class ExamTakerMain{
   
      // ================= ENTRY TEXTBOXES ========================   
    studentfield = new JTextField();
-   studentfield.setMaximumSize( 
-                               new Dimension(Integer.MAX_VALUE, studentfield.getPreferredSize().height) );
+   studentfield.setMaximumSize(
+   new Dimension(Integer.MAX_VALUE, studentfield.getPreferredSize().height) );
    studentfield.setColumns(45);
    studentfield.setEditable(true);
    
    
    // ============= LABELS =======================
-   JLabel edl = new JLabel("Enter your answer here");
+   JLabel edl = new JLabel("enter your answer here ");
    edl.setHorizontalTextPosition(SwingConstants.LEFT);
    edl.setLabelFor(studentfield);
   
@@ -151,20 +151,32 @@ class ExamTakerMain{
   });
   //Add buttons to MenuButtons
   //MenuButtons.add(printMenuButton);
+  
+  //
+  // end buttons
+  //
+  
   MenuButtons.add(loadExamButton);  
   
   MainPanel.add(MenuButtons);
   //MainPanel.add(studentfield);
   JPanel panel2 = new JPanel();
-  panel2.setLayout(new BoxLayout(panel2,BoxLayout.X_AXIS));
-  panel2.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 10));
+  panel2.setLayout(new BoxLayout(panel2,BoxLayout.PAGE_AXIS));
+  panel2.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
   // this is where I am adding the 
   // textfield box that can be seen currently
+  // had to add the label this way
+  panel2.add(edl);
   panel2.add(studentfield);
+  panel2.add(Box.createRigidArea(new Dimension(5,0)));
    
   panel2.add(Box.createRigidArea(new Dimension(5,0)));
+  
+  
+  
   // I think I have to add this to the main panel this way
   MainPanel.add(panel2); 
+  MainPanel.add(Box.createRigidArea(new Dimension(5, 0)));
   // then I add the main panel to the frame
   ExamTakerFrame.add(MainPanel);
   // now I make it visible
@@ -172,10 +184,8 @@ class ExamTakerMain{
  }
   
   public static void main (String[] args)throws IOException{
-    
-    
     currentExam = null;
-  initGUI();
+    initGUI();
   
     //
     // added boolean to allow student
@@ -184,9 +194,6 @@ class ExamTakerMain{
     //
     
     boolean done = false;
-    
-    
-    
      //obtain the singleton scanner
      Scanner s1 = ScannerFactory.getKS();
     
