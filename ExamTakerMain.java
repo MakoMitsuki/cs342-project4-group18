@@ -83,7 +83,7 @@ class ExamTakerMain{
     ExamTakerFrame.setSize(500, 600);
     ExamTakerFrame.setLocationRelativeTo(null);
     
-    Font Arial = new Font("Arial", 0, 12);
+    Font Arial = new Font("Arial", 0, 14);
     ExamTakerFrame.setFont(Arial);
     ExamTakerFrame.setBackground(Color.white);
     
@@ -101,13 +101,13 @@ class ExamTakerMain{
     
     
     JScrollPane ExamTextFrame = new JScrollPane(ExamText);
-    ExamTextFrame.setSize(50, 50);
+    ExamTextFrame.setSize(20, 20);
     MainPanel.add(ExamTextFrame);
     
     
     // following line is useless
     ExamText.setSize(10,10);
-    MainPanel.add(ExamText);    
+    //MainPanel.add(ExamText);    
     
     //
     //Set up buttons
@@ -134,15 +134,39 @@ class ExamTakerMain{
         }
         
         File a = choose.getSelectedFile();
-        clearJTextArea();
+        //clearJTextArea();
         loadExamFromFile(a);
         currentExam.getAnswerFromStudent(-1);
+        
+        System.out.println("You have answered every question.  If you would like to"
+                             +" change your answer to one of the questions click the CHANGE ANSWER "
+                             + "button.");
+        
+        
+        double grade = currentExam.getValue();
+        
+        System.out.println("You earned a score of: " +grade +" / " +currentExam.size()*5);
         //printExam(currentExam);
         
       }
     });
     
-    MenuButtons.add(loadExamButton);  
+    JButton changeAnswerButton = new JButton("Change Answer");
+    changeAnswerButton.setToolTipText("Allows an answer to be changed");
+    changeAnswerButton.addActionListener(new ActionListener(){
+      @Override
+      public void actionPerformed(ActionEvent e){
+        
+        String response = JOptionPane.showInputDialog("Enter the number " 
+                          +"of the question you would like to change.", null);
+        
+        int i = Integer.parseInt(response);
+        currentExam.getAnswerFromStudent(i-1);        
+      }
+    });
+    
+    MenuButtons.add(loadExamButton);
+    MenuButtons.add(changeAnswerButton);
 
     
     //
