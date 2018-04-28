@@ -4,9 +4,11 @@ package cs342;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.StringTokenizer;
+import java.util.concurrent.Callable;
 import java.io.PrintWriter;
 //gui
 import javax.swing.*;
@@ -21,8 +23,10 @@ public class ExamBuilder {
 	private static JFrame ExamBuilderFrame;
 	private static JPanel MainPanel;
 	private static JTextArea ExamText;
+	private static createMCSAQuestion newFrame;
 	//private static JOptionPane AlertMessager;
 	
+private static ArrayList<String> returnData;
 	
 	
 
@@ -372,6 +376,9 @@ public class ExamBuilder {
 	public static void printExam(Exam exam){
 		exam.print();
 	}
+	
+	
+	
 	//save exam to a file, filename given by user, if file not found, makes a new one.
 	public  static void saveExam(Exam exam, StringTokenizer strTok){
 		try {
@@ -402,6 +409,25 @@ public class ExamBuilder {
 		ExamText.setText("");
 		return;
 	}
+	private static void generateMCSAQuestion(){
+		//System.out.println("Done was Triggered");
+		
+		
+		returnData = newFrame.returnData();
+		
+		if(returnData.size() >= 2){
+			System.out.println(returnData.get(0) + returnData.get(1));
+			MCSAQuestion newq = new MCSAQuestion(returnData.get(0),Double.parseDouble(returnData.get(1)));
+			
+			for(int i = 2;i<returnData.size();i++){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),0.0));
+			}
+			System.out.print((currentExam.size()+1) +". ");
+			newq.print();
+			currentExam.addQuestion(newq);
+		}
+	}
+	
 	
 	
 	public static void initGUI(){
@@ -410,6 +436,16 @@ public class ExamBuilder {
 		ExamBuilderFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ExamBuilderFrame.setSize(500, 600);
 		ExamBuilderFrame.setLocationRelativeTo(null);
+		newFrame = new createMCSAQuestion(new Callable<Integer>(){
+
+			@Override
+			public Integer call() throws Exception {
+				// TODO Auto-generated method stub
+				generateMCSAQuestion();
+				return null;
+			}
+
+		});
 		
 		
 		//Main panel:
@@ -458,7 +494,7 @@ public class ExamBuilder {
 				
 				if (choice != JFileChooser.APPROVE_OPTION) return;
 				
-				 choose.getSelectedFile();
+				 //choose.getSelectedFile();
 				 clearJTextArea();
 				 loadExamFromFile(choose.getSelectedFile());
 				 printExam(currentExam);
@@ -523,6 +559,26 @@ public class ExamBuilder {
 			}
 		});
 		//Add more buttons....
+		//mcsa question button
+		JButton addMCSAQuestion = new JButton("Add MCSA Question");
+		addMCSAQuestion.setToolTipText("Adds a new Multiple Choice Single Answer Question.");
+		addMCSAQuestion.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(currentExam != null){
+					newFrame.showDialogBox(newFrame);
+				}
+				else{
+					JOptionPane.showMessageDialog(ExamBuilderFrame,"Please, load a new exam first.");
+					return;
+				}
+				
+			}
+
+			
+		});
+		
 		
 		
 		
@@ -532,13 +588,13 @@ public class ExamBuilder {
 		MenuButtons.add(loadExamButton);
 		MenuButtons.add(reorderQuestionsButton);
 		MenuButtons.add(removeQuestionButton);
+		MenuButtons.add(addMCSAQuestion);
 		
 		
 		
 		
 		
 		MainPanel.add(MenuButtons);
-		
 		ExamBuilderFrame.add(MainPanel);
 		ExamBuilderFrame.setVisible(true);
 	}
@@ -556,7 +612,9 @@ public class ExamBuilder {
 		//************************************************************
 		
 		//Exam currentExam = null;
-
+		
+		
+		/*exam prev code --enable again later
 		StringTokenizer strTok;
 		Scanner InputScanner = ScannerFactory.getKS();
 		InputScanner.useDelimiter(" \\t\\n");
@@ -631,7 +689,7 @@ public class ExamBuilder {
 				printMenu();
 			}
 		}
-		
+		*/
 		
 		
 		//ending
