@@ -10,8 +10,14 @@ import java.util.regex.Pattern;
 import java.util.StringTokenizer;
 import java.util.concurrent.Callable;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 //gui
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.event.*;
 import java.awt.*;
 
@@ -24,6 +30,7 @@ public class ExamBuilder {
 	private static JPanel MainPanel;
 	private static JTextArea ExamText;
 	private static createMCSAQuestion newFrame;
+	private static File currentFile;
 	//private static JOptionPane AlertMessager;
 	
 private static ArrayList<String> returnData;
@@ -81,8 +88,8 @@ private static ArrayList<String> returnData;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		//Return reference to exam
+		currentFile = chosenFile;
+		
 	}
 	
 	//adds a new question based off of input
@@ -398,6 +405,26 @@ private static ArrayList<String> returnData;
 		}
 	}
 	
+	
+	public static void saveExam(){
+
+		try {
+			PrintWriter writer = new PrintWriter(currentFile);
+			currentExam.save(writer);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		
+		
+	}
+	
+	
+	public static void saveAsExam(){
+		
+	}
 	//Quit Program
 	public  static void Quit(){
 		System.exit(0);
@@ -416,7 +443,7 @@ private static ArrayList<String> returnData;
 		returnData = newFrame.returnData();
 		
 		if(returnData.size() >= 2){
-			System.out.println(returnData.get(0) + returnData.get(1));
+			//System.out.println(returnData.get(0) + returnData.get(1));
 			MCSAQuestion newq = new MCSAQuestion(returnData.get(0),Double.parseDouble(returnData.get(1)));
 			
 			for(int i = 2;i<returnData.size();i++){
@@ -467,6 +494,27 @@ private static ArrayList<String> returnData;
 		//Set up buttons *********************************************************************
 		JPanel MenuButtons = new JPanel();
 		MenuButtons.setLayout(new BoxLayout(MenuButtons,BoxLayout.Y_AXIS));
+		
+		
+		JButton saveButton = new JButton("Save");
+		saveButton.setToolTipText("Saves exam to the same file name.");
+		saveButton.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				
+				if(currentExam != null){
+					saveExam();
+					//System.out.println("Printed");
+					//System.out.println(currentFile.getPath());
+				}
+				else{
+					JOptionPane.showMessageDialog(null,"Please, load or create a new exam first.");
+				}
+				
+			}
+		});
+		
 		
 		//Menu Button
 		JButton printMenuButton = new JButton("Show Menu");
@@ -579,16 +627,94 @@ private static ArrayList<String> returnData;
 			
 		});
 		
+		//mcma question button
+		
+		JButton addSAQuestionButton = new JButton("Add SA Question");
+		addSAQuestionButton.setToolTipText("Adds a Short Answer Question");
+		addSAQuestionButton.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				JTextField PromptText = new JTextField();
+				JFormattedTextField NumericalPoints = new JFormattedTextField(new DecimalFormat("#0.00"));
+				JTextField answerText = new JTextField();
+				
+				//Prompt for text, score, and answer
+				Object[] Inputfields = {"Question Text",PromptText,"Points Value",NumericalPoints,"answer text",answerText};
+				JOptionPane.showConfirmDialog(ExamBuilderFrame,Inputfields,"Customized Dialog",JOptionPane.OK_CANCEL_OPTION);
+				
+				
+				SAQuestion newq = new SAQuestion(PromptText.getText(),Double.parseDouble(NumericalPoints.getText()));
+				
+				newq.setRightAnswer(newq.getNewAnswer(answerText.getText()));
+				
+				currentExam.addQuestion(newq);
+				
+				System.out.print((currentExam.size()+1)+". ");
+				newq.print();
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		
 		
+		//Numerical Answer Button
+		JButton addNumQuestionButton = new JButton("Add Num Question");
+		addNumQuestionButton.setToolTipText("Adds a Numerical Answer Question.");
+		addNumQuestionButton.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(currentExam != null){
+					JTextField PromptText = new JTextField();
+					JFormattedTextField NumericalPoints = new JFormattedTextField(new DecimalFormat("#0.00000"));
+					JFormattedTextField NumericalAnswer = new JFormattedTextField(new DecimalFormat("#0.00000"));
+					JFormattedTextField NumTolerance = new JFormattedTextField(new DecimalFormat("#0.00000"));
+					
+					Object[] InputFields = {"Prompt: ",PromptText,"Points Value :",NumericalPoints,"Numerical Answer :",NumericalAnswer,"Tolerance :",NumTolerance};
+					
+					do{
+					JOptionPane.showConfirmDialog(ExamBuilderFrame,InputFields,"Create a Numerical Question", JOptionPane.OK_CANCEL_OPTION);
+					if(PromptText.getText().isEmpty() || NumericalPoints.getText().isEmpty() || NumericalAnswer.getText().isEmpty() || NumTolerance.getText().isEmpty()){
+						JOptionPane.showMessageDialog(null,"Please Enter valid Values");
+						
+					}
+					
+					}
+					while(  PromptText.getText().isEmpty() || NumericalPoints.getText().isEmpty() || NumericalAnswer.getText().isEmpty() || NumTolerance.getText().isEmpty());
+					
+					NumQuestion newq = new NumQuestion(PromptText.getText(),Double.parseDouble(NumericalPoints.getText()), Double.parseDouble(NumTolerance.getText()));
+					
+					newq.setRightAnswer(new NumAnswer(Double.parseDouble(NumericalAnswer.getText()),Double.parseDouble(NumTolerance.getText())));
+					
+					currentExam.addQuestion(newq);
+					System.out.print((currentExam.size()+1)+". ");
+					newq.print();
+					
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "Please, first load an exam first.");
+				}
+			}
+		});
 		
 		
 		//Add buttons to MenuButtons
+		MenuButtons.add(saveButton);
 		MenuButtons.add(printMenuButton);
 		MenuButtons.add(loadExamButton);
 		MenuButtons.add(reorderQuestionsButton);
 		MenuButtons.add(removeQuestionButton);
 		MenuButtons.add(addMCSAQuestion);
+		//MenuButtons.add(addMCMAQuestionButton);
+		MenuButtons.add(addSAQuestionButton);
+		MenuButtons.add(addNumQuestionButton);
 		
 		
 		
