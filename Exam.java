@@ -19,7 +19,12 @@ public class Exam {
   private boolean complete;
   private int numAnswered;
   // exam is complete once all questions have been answered
-  
+  Exam(String testName){
+	  name = testName;
+	  questionArray = new ArrayList<Question>();
+	  totalScore = 0;
+	  complete =  false;
+  }
   
   Exam(String testName, Scanner scnr){
     name =  testName;
@@ -107,10 +112,21 @@ public class Exam {
     }
   }
   
-  public void removeNthQuestion(int n){
+  /**
+   * Removes the nth question given. 
+   * If the index is out of range, throws: IndexOutOfBoundsException
+   */
+  public void removeNthQuestion(int n) throws IndexOutOfBoundsException {
+	  try{
    if(questionArray.size() >= 1){
     questionArray.remove(n);
    }
+	  }
+	  catch(IndexOutOfBoundsException err){
+		  throw err;
+		  //System.out.println("Error, your question number is out of range.");
+		  
+	  }
   }
   
   public void reorderQuestions(){

@@ -73,7 +73,7 @@ class SAQuestion extends Question{
     //studentAnswer.print();
     }
    
-   
+   s1.close();
   }
   
   // why does it freeze here?

@@ -1,6 +1,6 @@
 //Alexander Moreno
 //amoren26
-package cs342;
+//package cs342;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -446,6 +446,10 @@ private static ArrayList<String> returnData;
 		
 		
 		returnData = newFrame.returnData();
+		
+		if(returnData.get(0).matches("Prompt: ")){
+			return;
+		}
 		
 		if(returnData.size() >= 2){
 			//System.out.println(returnData.get(0) + returnData.get(1));

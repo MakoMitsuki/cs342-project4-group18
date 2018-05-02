@@ -1,4 +1,4 @@
-package cs342;
+//package cs342;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -29,10 +29,27 @@ public class createMCSAQuestion extends JFrame{
 	private JFrame MCSAQuestionGUI;
 	
 	
+	private JTextField AnswerField1;
+	private JTextField AnswerField2;
+	private JTextField AnswerField3;
+	private JTextField AnswerField4;
+	private JTextField AnswerField5;
+	private JTextField AnswerField6;
+	private JFormattedTextField ans1Points;
+	private JFormattedTextField ans2Points;
+	private JFormattedTextField ans3Points;
+	private JFormattedTextField ans4Points;
+	private JFormattedTextField ans5Points;
+	private JFormattedTextField ans6Points;
 	
+	
+	private JFormattedTextField Value;
+	private double QuestionValue;
+	private Callable<Integer> func;
 	 createMCSAQuestion(Callable<Integer> newFunc){
+		func = newFunc;
 		returnStrings = null;
-		double QuestionValue = 0.0;
+		QuestionValue = 0.0;
 		MCSAQuestionGUI = new JFrame("New MCSAQuestion");
 		MCSAQuestionGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel QuestionSurvey = new JPanel();
@@ -43,28 +60,28 @@ public class createMCSAQuestion extends JFrame{
 		//prompt
 		NumberFormat valueFormat = NumberFormat.getNumberInstance();
 		QuestionText = new JTextField("Prompt: ");
-		JFormattedTextField Value = new JFormattedTextField(valueFormat);
+		Value = new JFormattedTextField(valueFormat);
 		Value.setValue(QuestionValue);
 		
 		
 		//Answers
-		JTextField AnswerField1 = new JTextField("1st");
-		JFormattedTextField ans1Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		AnswerField1 = new JTextField("1st");
+		ans1Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		ans1Points.setValue(QuestionValue);
-		JTextField AnswerField2 = new JTextField("2nd");
-		JFormattedTextField ans2Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		AnswerField2 = new JTextField("2nd");
+		ans2Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		ans2Points.setValue(QuestionValue);
-		JTextField AnswerField3 = new JTextField("3rd");
-		JFormattedTextField ans3Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		AnswerField3 = new JTextField("3rd");
+		ans3Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		ans3Points.setValue(QuestionValue);
-		JTextField AnswerField4 = new JTextField("4th");
-		JFormattedTextField ans4Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		AnswerField4 = new JTextField("4th");
+		ans4Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		ans4Points.setValue(QuestionValue);
-		JTextField AnswerField5 = new JTextField("5th");
-		JFormattedTextField ans5Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		AnswerField5 = new JTextField("5th");
+		ans5Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		ans5Points.setValue(QuestionValue);
-		JTextField AnswerField6 = new JTextField("6th");
-		JFormattedTextField ans6Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		AnswerField6 = new JTextField("6th");
+		ans6Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		ans6Points.setValue(QuestionValue);
 		
 		JButton DoneButton = new JButton("Done");
@@ -93,7 +110,7 @@ public class createMCSAQuestion extends JFrame{
 				
 				//Call killer
 				try {
-					newFunc.call();
+					func.call();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -144,11 +161,27 @@ public class createMCSAQuestion extends JFrame{
 		MCSAQuestionGUI.add(QuestionSurvey);
 		MCSAQuestionGUI.setSize(400, 400);
 		MCSAQuestionGUI.setVisible(false);
-		//NOTIFY();
 		
 	}
 	
 	public void showDialogBox(createMCSAQuestion q) {
+		
+		AnswerField1.setText("1st");
+		AnswerField2.setText("2nd");
+		AnswerField3.setText("3rd");
+		AnswerField4.setText("4th");
+		AnswerField5.setText("5th");
+		AnswerField6.setText("6th");
+		ans1Points.setValue(QuestionValue);
+		ans2Points.setValue(QuestionValue);
+		ans3Points.setValue(QuestionValue);
+		ans4Points.setValue(QuestionValue);
+		ans5Points.setValue(QuestionValue);
+		ans6Points.setValue(QuestionValue);
+		Value.setValue(QuestionValue);
+		QuestionText.setText("Prompt: ");
+		
+		
 		MCSAQuestionGUI.setVisible(true);
 	}
 	

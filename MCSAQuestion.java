@@ -96,6 +96,7 @@ public class MCSAQuestion extends MCQuestion{
     answerArray.get(choice).setSelected(true);
     answered = true;
     }
+    s1.close();
   }
   
   
