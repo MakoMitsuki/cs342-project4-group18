@@ -451,9 +451,34 @@ private static ArrayList<String> returnData;
 			//System.out.println(returnData.get(0) + returnData.get(1));
 			MCSAQuestion newq = new MCSAQuestion(returnData.get(0),Double.parseDouble(returnData.get(1)));
 			
-			for(int i = 2;i<returnData.size();i++){
-				newq.addAnswer(new MCSAAnswer(returnData.get(i),0.0));
+			int i = 2;
+			if(!returnData.get(i).matches("1st")){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),Double.parseDouble(returnData.get(i+1))));
 			}
+			i+=2;
+			if(!returnData.get(i).matches("2nd")){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),Double.parseDouble(returnData.get(i+1))));
+			}
+			i+=2;
+			if(!returnData.get(i).matches("3rd")){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),Double.parseDouble(returnData.get(i+1))));
+			}
+			i+=2;
+			
+			if(!returnData.get(i).matches("4th")){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),Double.parseDouble(returnData.get(i+1))));
+			}
+			i+=2;
+			if(!returnData.get(i).matches("5th")){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),Double.parseDouble(returnData.get(i+1))));
+			}
+			
+			i+=2;
+			if(!returnData.get(i).matches("6th")){
+				newq.addAnswer(new MCSAAnswer(returnData.get(i),Double.parseDouble(returnData.get(i+1))));
+			}
+			
+			
 			System.out.print((currentExam.size()+1) +". ");
 			newq.print();
 			currentExam.addQuestion(newq);

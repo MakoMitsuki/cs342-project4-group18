@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
 public class createMCSAQuestion extends JFrame{
 	/**
 	 * 
@@ -47,18 +48,24 @@ public class createMCSAQuestion extends JFrame{
 		
 		
 		//Answers
-		JTextField AnswerField1 = new JTextField("1st Answer: ");
+		JTextField AnswerField1 = new JTextField("1st");
 		JFormattedTextField ans1Points = new JFormattedTextField(new DecimalFormat("#0.00"));
-		JTextField AnswerField2 = new JTextField("2nd Answer: ");
+		ans1Points.setValue(QuestionValue);
+		JTextField AnswerField2 = new JTextField("2nd");
 		JFormattedTextField ans2Points = new JFormattedTextField(new DecimalFormat("#0.00"));
-		JTextField AnswerField3 = new JTextField("3rd Answer: ");
+		ans2Points.setValue(QuestionValue);
+		JTextField AnswerField3 = new JTextField("3rd");
 		JFormattedTextField ans3Points = new JFormattedTextField(new DecimalFormat("#0.00"));
-		JTextField AnswerField4 = new JTextField("4th Answer: ");
+		ans3Points.setValue(QuestionValue);
+		JTextField AnswerField4 = new JTextField("4th");
 		JFormattedTextField ans4Points = new JFormattedTextField(new DecimalFormat("#0.00"));
-		JTextField AnswerField5 = new JTextField("5th Answer: ");
+		ans4Points.setValue(QuestionValue);
+		JTextField AnswerField5 = new JTextField("5th");
 		JFormattedTextField ans5Points = new JFormattedTextField(new DecimalFormat("#0.00"));
-		JTextField AnswerField6 = new JTextField("6th Answer: ");
+		ans5Points.setValue(QuestionValue);
+		JTextField AnswerField6 = new JTextField("6th");
 		JFormattedTextField ans6Points = new JFormattedTextField(new DecimalFormat("#0.00"));
+		ans6Points.setValue(QuestionValue);
 		
 		JButton DoneButton = new JButton("Done");
 		DoneButton.setToolTipText("Add question to your Exam.");
@@ -70,12 +77,19 @@ public class createMCSAQuestion extends JFrame{
 				
 				returnStrings.add(QuestionText.getText());
 				returnStrings.add(Value.getText().toString());
+				
 				returnStrings.add(AnswerField1.getText());
+				returnStrings.add(ans1Points.getText());
 				returnStrings.add(AnswerField2.getText());
+				returnStrings.add(ans2Points.getText());
 				returnStrings.add(AnswerField3.getText());
+				returnStrings.add(ans3Points.getText());
 				returnStrings.add(AnswerField4.getText());
+				returnStrings.add(ans4Points.getText());
 				returnStrings.add(AnswerField5.getText());
+				returnStrings.add(ans5Points.getText());
 				returnStrings.add(AnswerField6.getText());
+				returnStrings.add(ans6Points.getText());
 				
 				//Call killer
 				try {
@@ -116,10 +130,15 @@ public class createMCSAQuestion extends JFrame{
 		QuestionSurvey.add(AnswerField1);
 		QuestionSurvey.add(ans1Points);
 		QuestionSurvey.add(AnswerField2);
+		QuestionSurvey.add(ans2Points);
 		QuestionSurvey.add(AnswerField3);
+		QuestionSurvey.add(ans3Points);
 		QuestionSurvey.add(AnswerField4);
+		QuestionSurvey.add(ans4Points);
 		QuestionSurvey.add(AnswerField5);
+		QuestionSurvey.add(ans5Points);
 		QuestionSurvey.add(AnswerField6);
+		QuestionSurvey.add(ans6Points);
 		QuestionSurvey.add(Options);
 		QuestionSurvey.setSize(new Dimension(150,150));
 		MCSAQuestionGUI.add(QuestionSurvey);
