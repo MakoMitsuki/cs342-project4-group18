@@ -306,12 +306,7 @@ private static ArrayList<String> returnData;
 	}
 	
 	
-	//should add new answers to MCAnswers, up to their max. If question is a single answer question
-	//It will overwrite the old answer.
-	public static void addNewAnswers(){
-		//Might not even used
-		
-	}
+
 	
 	
 	//remove question at qNum-1
@@ -408,6 +403,16 @@ private static ArrayList<String> returnData;
 	
 	public static void saveExam(){
 
+		if (currentFile == null){
+			JFileChooser choose  = new JFileChooser();
+			int choice = choose.showOpenDialog(choose);
+			
+			if (choice != JFileChooser.APPROVE_OPTION) return;
+			
+			
+			currentFile = new File(choose.getSelectedFile()+".txt");
+		}
+
 		try {
 			PrintWriter writer = new PrintWriter(currentFile);
 			currentExam.save(writer);
@@ -494,6 +499,36 @@ private static ArrayList<String> returnData;
 		//Set up buttons *********************************************************************
 		JPanel MenuButtons = new JPanel();
 		MenuButtons.setLayout(new BoxLayout(MenuButtons,BoxLayout.Y_AXIS));
+		
+		
+		
+		//New Exam
+		JButton newExam = new JButton("New File");
+		newExam.setToolTipText("Create a new exam");
+		newExam.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				//Ask for the title of the exam.
+				//then create a new exam from this data
+				JTextField examTitle = new JTextField();
+				Object[] titlePrompt = {"Enter the title of the new Exam",examTitle};
+				
+				if(JOptionPane.showConfirmDialog(ExamBuilderFrame, titlePrompt,"Creating a new Exam",JOptionPane.OK_CANCEL_OPTION)== JOptionPane.CANCEL_OPTION){
+					return;
+				}
+				
+				Exam exam = new Exam(examTitle.getText());
+				
+				currentExam = exam;
+				
+				currentExam.print();
+	
+			}
+		});
+		
+		
+		
 		
 		
 		JButton saveButton = new JButton("Save");
@@ -583,6 +618,9 @@ private static ArrayList<String> returnData;
 					try{
 						
 						String userInput = JOptionPane.showInputDialog("Enter a number for a specific question.");
+						if(userInput == null){
+							return;
+						}
 						if(userInput.isEmpty()){
 							JOptionPane.showMessageDialog(null, "Bad Input. Please enter an Integer.");
 						}
@@ -627,6 +665,104 @@ private static ArrayList<String> returnData;
 			
 		});
 		
+		
+		//MCMAButton
+		JButton addMCMAQuestion = new JButton("Add MCMA Question");
+		addMCMAQuestion.setToolTipText("Adds a new Multiple Choice Multiple Answer Question");
+		addMCMAQuestion.addActionListener(new ActionListener(){
+			
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(currentExam == null){
+					JOptionPane.showMessageDialog(null, "Please, load or create a new exam first.");
+					return;
+				}
+				JTextField Prompt = new JTextField();
+				JFormattedTextField NumericalPoints = new JFormattedTextField(new DecimalFormat("#0.00"));
+				JFormattedTextField BaseCredit = new JFormattedTextField(new DecimalFormat("#0.00"));
+				
+				
+				
+				//Answer Fields
+				JTextField answerText = new JTextField();
+				JFormattedTextField answerValue = new JFormattedTextField(new DecimalFormat("#0.00"));
+				answerValue.setValue(0.0);
+				JTextField answerText2 = new JTextField();
+				JFormattedTextField answerValue2 = new JFormattedTextField(new DecimalFormat("#0.00")); 
+				answerValue2.setValue(0.0);
+				JTextField answerText3 = new JTextField();
+				JFormattedTextField answerValue3 = new JFormattedTextField(new DecimalFormat("#0.00"));
+				answerValue3.setValue(0.0);
+				JTextField answerText4 = new JTextField();
+				JFormattedTextField answerValue4 = new JFormattedTextField(new DecimalFormat("#0.00"));
+				answerValue4.setValue(0.0);
+				JTextField answerText5 = new JTextField();
+				JFormattedTextField answerValue5 = new JFormattedTextField(new DecimalFormat("#0.00"));
+				answerValue5.setValue(0.0);
+				JTextField answerText6 = new JTextField();
+				JFormattedTextField answerValue6 = new JFormattedTextField(new DecimalFormat("#0.00"));
+				answerValue6.setValue(0.0);
+				
+				
+				
+				Object[] EntryFields  = {"Prompt: ",Prompt,
+										 "Total Value: ",NumericalPoints,
+										 "Base Credit ", BaseCredit,
+										 "Answer 1:",answerText,
+										 "Points: ",answerValue,
+										 "Answer 2:",answerText2,
+										 "Points:",answerValue2,
+										 "Answer 3:",answerText3,
+										 "Points:", answerValue3,
+										 "Answer 4:",answerText4,
+										 "Points",answerValue4,
+										 "Answer 5:",answerText5,
+										 "Points:", answerValue5,
+										 "Answer 6:", answerText6,
+										 "Points:", answerValue6
+										 };
+				
+				if(JOptionPane.showConfirmDialog(ExamBuilderFrame,EntryFields,"Create and add an MCMA Question",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.CANCEL_OPTION){
+					return;
+				}
+				
+				//Now add to exam
+				
+				MCMAQuestion newq = new MCMAQuestion(Prompt.getText(),Double.parseDouble(NumericalPoints.getText()),Double.parseDouble(BaseCredit.getText()));
+				
+				
+				
+				if(!answerText.getText().isEmpty()){
+						newq.addAnswer(new MCMAAnswer(answerText.getText(),Double.parseDouble(answerValue.getText())));
+					}
+				
+				if(!answerText2.getText().isEmpty()){
+					newq.addAnswer(new MCMAAnswer(answerText2.getText(),Double.parseDouble(answerValue2.getText())));
+				}
+				
+				if(!answerText3.getText().isEmpty()){
+					newq.addAnswer(new MCMAAnswer(answerText3.getText(),Double.parseDouble(answerValue3.getText())));
+				}
+				
+				if(!answerText4.getText().isEmpty()){
+					newq.addAnswer(new MCMAAnswer(answerText4.getText(),Double.parseDouble(answerValue4.getText())));
+				}
+				
+				if(!answerText5.getText().isEmpty()){
+					newq.addAnswer(new MCMAAnswer(answerText5.getText(),Double.parseDouble(answerValue5.getText())));
+				}
+				
+				if(!answerText6.getText().isEmpty()){
+					newq.addAnswer(new MCMAAnswer(answerText6.getText(),Double.parseDouble(answerValue6.getText())));
+				}
+				
+				
+				
+				currentExam.addQuestion(newq);
+			}
+		});
+				
+		
 		//mcma question button
 		
 		JButton addSAQuestionButton = new JButton("Add SA Question");
@@ -635,13 +771,19 @@ private static ArrayList<String> returnData;
 			
 			@Override
 			public void actionPerformed(ActionEvent e){
+				if(currentExam == null){
+					JOptionPane.showMessageDialog(null, "Please, load or create a new exam first.");
+					return;
+				}
 				JTextField PromptText = new JTextField();
 				JFormattedTextField NumericalPoints = new JFormattedTextField(new DecimalFormat("#0.00"));
 				JTextField answerText = new JTextField();
 				
 				//Prompt for text, score, and answer
 				Object[] Inputfields = {"Question Text",PromptText,"Points Value",NumericalPoints,"answer text",answerText};
-				JOptionPane.showConfirmDialog(ExamBuilderFrame,Inputfields,"Customized Dialog",JOptionPane.OK_CANCEL_OPTION);
+				if(JOptionPane.showConfirmDialog(ExamBuilderFrame,Inputfields,"Customized Dialog",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.CANCEL_OPTION){
+					return;
+				}
 				
 				
 				SAQuestion newq = new SAQuestion(PromptText.getText(),Double.parseDouble(NumericalPoints.getText()));
@@ -650,7 +792,7 @@ private static ArrayList<String> returnData;
 				
 				currentExam.addQuestion(newq);
 				
-				System.out.print((currentExam.size()+1)+". ");
+				System.out.print((currentExam.size())+". ");
 				newq.print();
 				
 				
@@ -680,7 +822,10 @@ private static ArrayList<String> returnData;
 					Object[] InputFields = {"Prompt: ",PromptText,"Points Value :",NumericalPoints,"Numerical Answer :",NumericalAnswer,"Tolerance :",NumTolerance};
 					
 					do{
-					JOptionPane.showConfirmDialog(ExamBuilderFrame,InputFields,"Create a Numerical Question", JOptionPane.OK_CANCEL_OPTION);
+					if(JOptionPane.showConfirmDialog(ExamBuilderFrame,InputFields,"Create a Numerical Question", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.CANCEL_OPTION){
+						return;
+					}
+					
 					if(PromptText.getText().isEmpty() || NumericalPoints.getText().isEmpty() || NumericalAnswer.getText().isEmpty() || NumTolerance.getText().isEmpty()){
 						JOptionPane.showMessageDialog(null,"Please Enter valid Values");
 						
@@ -706,13 +851,14 @@ private static ArrayList<String> returnData;
 		
 		
 		//Add buttons to MenuButtons
+		MenuButtons.add(newExam);
 		MenuButtons.add(saveButton);
 		MenuButtons.add(printMenuButton);
 		MenuButtons.add(loadExamButton);
 		MenuButtons.add(reorderQuestionsButton);
 		MenuButtons.add(removeQuestionButton);
 		MenuButtons.add(addMCSAQuestion);
-		//MenuButtons.add(addMCMAQuestionButton);
+		MenuButtons.add(addMCMAQuestion);
 		MenuButtons.add(addSAQuestionButton);
 		MenuButtons.add(addNumQuestionButton);
 		
@@ -820,5 +966,4 @@ private static ArrayList<String> returnData;
 		
 		//ending
 	}
-
 }

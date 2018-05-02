@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -43,14 +45,20 @@ public class createMCSAQuestion extends JFrame{
 		JFormattedTextField Value = new JFormattedTextField(valueFormat);
 		Value.setValue(QuestionValue);
 		
-		//Value.setColumns(10);
+		
 		//Answers
 		JTextField AnswerField1 = new JTextField("1st Answer: ");
+		JFormattedTextField ans1Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		JTextField AnswerField2 = new JTextField("2nd Answer: ");
+		JFormattedTextField ans2Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		JTextField AnswerField3 = new JTextField("3rd Answer: ");
+		JFormattedTextField ans3Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		JTextField AnswerField4 = new JTextField("4th Answer: ");
+		JFormattedTextField ans4Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		JTextField AnswerField5 = new JTextField("5th Answer: ");
+		JFormattedTextField ans5Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		JTextField AnswerField6 = new JTextField("6th Answer: ");
+		JFormattedTextField ans6Points = new JFormattedTextField(new DecimalFormat("#0.00"));
 		
 		JButton DoneButton = new JButton("Done");
 		DoneButton.setToolTipText("Add question to your Exam.");
@@ -84,18 +92,35 @@ public class createMCSAQuestion extends JFrame{
 			}
 			
 		});
+		
+		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.setToolTipText("Cancel this operation.");
+		cancelButton.addActionListener(new ActionListener(){
+			
+			@Override 
+			public void actionPerformed(ActionEvent e){
+				MCSAQuestionGUI.setVisible(false);
+			}
+		});
 		 
-		//Ans1 = AnswerField1.getSelectedText()
+		
+		JPanel Options = new JPanel();
+		Options.setLayout(new BoxLayout(Options,BoxLayout.X_AXIS));
+		Options.add(DoneButton);
+		Options.add(cancelButton);
+		
 		
 		QuestionSurvey.add(QuestionText);
 		QuestionSurvey.add(Value);
 		QuestionSurvey.add(AnswerField1);
+		QuestionSurvey.add(ans1Points);
 		QuestionSurvey.add(AnswerField2);
 		QuestionSurvey.add(AnswerField3);
 		QuestionSurvey.add(AnswerField4);
 		QuestionSurvey.add(AnswerField5);
 		QuestionSurvey.add(AnswerField6);
-		QuestionSurvey.add(DoneButton);
+		QuestionSurvey.add(Options);
 		QuestionSurvey.setSize(new Dimension(150,150));
 		MCSAQuestionGUI.add(QuestionSurvey);
 		MCSAQuestionGUI.setSize(400, 400);
@@ -112,10 +137,6 @@ public class createMCSAQuestion extends JFrame{
 	public  ArrayList<String> returnData(){
 		
 		 return returnStrings;
-	}
-	
-	private void NOTIFY(){
-		notify();
 	}
 
 
